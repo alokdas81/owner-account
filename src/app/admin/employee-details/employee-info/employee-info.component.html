@@ -1,0 +1,42 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <mat-card-title>Details for the clicked Employee</mat-card-title>
+      <br>
+      <br>
+      <mat-card-content>
+        <div fxLayout="column wrap" fxLayoutGap="40px">
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Employee's First name:</strong></div>
+            <div fxFlex>{{employee?.f_name}}</div>
+          </div>
+    
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Employee's Last name:</strong></div>
+            <div fxFlex>{{employee?.l_name}}</div>
+          </div>
+
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Employee's Phone no:</strong></div>
+            <div fxFlex>{{employee?.phone}}</div>
+          </div>
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Employee's email:</strong></div>
+            <div fxFlex>{{employee?.email}}</div>
+          </div>
+
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Employee's sup_id:</strong></div>
+            <div fxFlex>{{employee?.sup_id}}</div>
+          </div>
+           
+          
+        </div>
+
+     
+        <mat-card-actions>
+              <button type="button" mat-raised-button color="warn" (click)="onBack()">Go Back</button>
+        </mat-card-actions>
+      </mat-card-content>
+     
+    </mat-card>
+</section>

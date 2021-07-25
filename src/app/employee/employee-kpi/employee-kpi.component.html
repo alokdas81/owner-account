@@ -1,0 +1,140 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>Employee Kpi</mat-card-title>
+    <br />
+
+    <form
+      [formGroup]="employeeForm"
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="addKpi()"
+      fxLayout="column wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+    >
+      <h4 class="example-h4">Availability</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="availability"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">On time Job delivery</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="ontime"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Punctuality</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="punctuality"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Regularity</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="regularity"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Mean Time to Repair</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="timetorepair"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Critical problem solving ability</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="criticalproblemsolving"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Client Handling Ability</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="clienthandling"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Innovative and Adatptive</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="innovative"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+
+      <h4 class="example-h4">Team Player</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="teamPlayer"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+      <h4 class="example-h4">Dependibility</h4>
+      <mat-slider
+        thumbLabel
+        formControlName="dependibility"
+        [displayWith]="formatLabel"
+        tickInterval="10"
+        step="1"
+        min="0"
+        max="10"
+      >
+      </mat-slider>
+      <mat-card-actions>
+  <button mat-raised-button color="primary" [disabled]="!employeeForm.valid">Submit</button>
+  <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+</mat-card-actions>
+</form>
+    
+  </mat-card>
+</section>

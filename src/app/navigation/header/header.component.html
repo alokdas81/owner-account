@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <a routerLink="/home">Ogma Conception</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <a routerLink="/admin/admin">Employee List</a>
+            </li>
+            <li>
+                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.adminLoggedIn()" routerLink="/signin" routerLinkActive="active">Sign In</a>
+            </li>
+            <li>
+                <a mat-button mat-raised-button color="accent" *ngIf="_authService.adminLoggedIn()" (click)="_authService.adminLogout()" >Sign Out</a>
+            </li>
+            <li>
+                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.employeeLogggedIn()" routerLink="/employee/login"  routerLinkActive="active" >Log In</a>
+            </li>
+            <li>
+                <a mat-button mat-raised-button color="accent" *ngIf="_authService.employeeLogggedIn()" (click)="_authService.logout()" >Log Out</a>
+            </li>
+        </ul>
+    </div>
+  </mat-toolbar>

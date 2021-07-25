@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+}
+
+th.mat-header-cell {
+    text-align: left;
+    max-width: 300px;
+}
+.card-container {
+    /*  not needed styles to reflect it */ 
+    padding: 10px;
+    color: blue;
+    width: 100%;
+  
+    /* needed styles below */
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+  }
