@@ -13,18 +13,19 @@ import { EmployeeKpiDetailsComponent } from '../employee-kpi-details/employee-kp
 const routes: Routes = [
   { path: 'admin',canActivate:[AuthGuard], component: EmployeeListComponent },
   { path: 'details/:emp_id',canActivate:[AuthGuard], component: EmployeeDetailsComponent },
-  { path: 'kpi_details/:emp_id', component: EmployeeKpiDetailsComponent },
+  { path: 'kpi_details/:emp_id',canActivate:[AuthGuard], component: EmployeeKpiDetailsComponent },
+  { path: 'delete/:emp_id',canActivate:[AuthGuard], component: EmployeeDeleteComponent },
   { path: 'add',canActivate:[AuthGuard], component: EmployeeAddComponent },
   {
     path: 'update/:emp_id',
     canActivate:[AuthGuard],
-   
+
     component: EmployeeUpdateComponent,
   },
   {
     path: 'delete/:emp_id',
     canActivate:[AuthGuard],
-  
+
     component: EmployeeDeleteComponent,
   },
 ];

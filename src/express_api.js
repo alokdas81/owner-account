@@ -154,6 +154,9 @@ app.put("/update/:id", verifyToken, function (req, res) {
 
 //get kpi list ny id
 
+
+
+
 app.get("/kpi/:id", function (req, res) {
   var id = req.params.id;
   console.log(id);
@@ -171,7 +174,20 @@ app.get("/kpi/:id", function (req, res) {
 // get all employees list
 
 app.get("/list", function (req, res) {
-  var sql = "SELECT e.* FROM employee_master as e where e.sup_id=1 and e.roll!=1;";
+  var sql = "SELECT * FROM employee_master";
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    var jsonstr = JSON.stringify(result);
+    res.end(jsonstr);
+  });
+
+  // console.log("Connected!");
+  // res.end("Save done!!");
+});
+
+app.get("/supervisor", function (req, res) {
+  var sql = "SELECT * FROM employee_master where status='1' ";
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
@@ -365,4 +381,19 @@ app.post("/login", async function (req, res) {
 
   console.log("Connected!");
 });
+
+
+
+app.delete("/delete/:id", verifyToken,function (req, res) {
+  var id = req.params.id;
+  console.log("test");
+  console.log(req.body);
+  var sql =
+    "DELETE FROM employee_master where emp_id='" + id + "'";
+  con.query(sql);
+  console.log("Connected!");
+  console.log(sql);
+  res.end('{"res":"Delete"}');
+});
+
 var server = app.listen(3000, function () {});

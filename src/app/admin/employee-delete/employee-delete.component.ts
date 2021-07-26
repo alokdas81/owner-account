@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./employee-delete.component.css']
 })
 export class EmployeeDeleteComponent implements OnInit {
- 
+
   public employee!: Employee;
   constructor(private repository: RepositoryService, private router: Router,private location: Location,
     private activeRoute: ActivatedRoute) { }
@@ -19,7 +19,7 @@ export class EmployeeDeleteComponent implements OnInit {
     this.getEmployeeById();
   }
 
-  
+
 private getEmployeeById = () => {
   const employeeId: string = this.activeRoute.snapshot.params['emp_id'];
   const employeeByIdUrl: string = `details/${employeeId}`;
@@ -38,11 +38,11 @@ public redirectToEmployeeList = () => {
 
 
 public deleteEmployee = () => {
-  const deleteUrl: string = `details/${this.employee.emp_id}`;
+  const deleteUrl: string = `delete/${this.employee.emp_id}`;
   this.repository.delete(deleteUrl)
     .subscribe(res => {
       console.log(res);
-     // $('#successModal').modal();
+    this.location.back();
     },
     (error) => {
       //this.errorHandler.handleError(error);

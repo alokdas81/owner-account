@@ -1,5 +1,5 @@
 export interface Detail{
-    status: string;    
+    status: string;
     roll:number;
 }
     export interface Employee{
@@ -8,9 +8,9 @@ export interface Detail{
        l_name: string;
        phone:number;
        email:string;
-       sup_id: number;  
-      
-       
+       sup_id: number;
+
+
     details?: Detail[];
 }
 
@@ -19,7 +19,8 @@ export interface EmployeeForAdd {
     l_name: string;
     phone:number;
     email:string;
-    sup_id: number;  
+    status: string;
+    sup_id: number;
 }
 
 export interface AuthResponce{
@@ -66,6 +67,10 @@ export interface Colleague {
     sup_id: number;
     roll: number;
   }
-  
 
-    
+  export interface Supervisor extends Colleague{
+
+
+  }
+
+

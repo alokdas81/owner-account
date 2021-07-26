@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
   handlrmsg(){
     if (this.winMassage) {
       this.toastr.success(this.winMassage);
-    } 
+    }
     if(this.error){
       this.toastr.error(this.error);
     }
@@ -51,14 +51,15 @@ export class SigninComponent implements OnInit {
       if (this.loginMode) {
         this._authservice.signIn(email, password).subscribe(
           (res) => {
-            this.winMassage = 'Login Successfully!';   
+            localStorage.clear();
+            this.winMassage = 'Login Successfully!';
             console.log(res);
             if(res.admin){
               localStorage.setItem('admin', JSON.stringify(res.admin));
               localStorage.setItem('token', res.token);
               this.routes.navigate(['/admin/admin']);
             }
-            
+
           },
 
           (err) => {

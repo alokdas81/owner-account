@@ -1,57 +1,57 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthResponce,EmpResponce } from './employeedetails';
+import { AuthResponce, EmpResponce } from './employeedetails';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
- 
-  email!:AuthResponce;
-  password!:AuthResponce;
-  roll!:AuthResponce;
+  email!: AuthResponce;
+  password!: AuthResponce;
+  roll!: AuthResponce;
 
-  emp_email!:EmpResponce;
-  emp_password!:EmpResponce;
+  emp_email!: EmpResponce;
+  emp_password!: EmpResponce;
 
-  private _loginUrl="http://localhost:3000/signIn";
+  private _loginUrl = 'http://localhost:3000/signIn';
 
-  constructor(private httpclient:HttpClient, private routes:Router) { }
+  constructor(private httpclient: HttpClient, private routes: Router) {}
 
+  public signIn = (email: string, password: string): Observable<any> => {
+    return this.httpclient.post(environment.endPoints.auth.signIn, {
+      email: email,
+      password: password,
+    });
+  };
 
-  public signIn = (email: string, password:string):Observable<any> => {
-  return this.httpclient.post(environment.endPoints.auth.signIn,{email:email,password:password});
+  public logIn = (emp_email: string, emp_password: string): Observable<any> => {
+    return this.httpclient.post<EmpResponce>(
+      environment.endPoints.employee.loginEmoployee,
+      { email: emp_email, password: emp_password }
+    );
+  };
+
+  adminLoggedIn() {
+    return !!localStorage.getItem('admin');
+  }
+  employeeLogggedIn() {
+    return !!localStorage.getItem('employee');
   }
 
-  public logIn=(emp_email:string, emp_password: string): Observable<any>=>{
-    return this.httpclient.post<EmpResponce>(environment.endPoints.employee.loginEmoployee,{email:emp_email,password:emp_password});
+  getToken() {
+    return localStorage.getItem('token');
   }
 
+  adminLogout() {
+    this.routes.navigate(['/home']);
+    return localStorage.removeItem('admin');
+  }
+  logout() {
+    this.routes.navigate(['/home']);
+    return localStorage.removeItem('employee');
 
-
-adminLoggedIn(){
-  return !!localStorage.getItem('token')
+  }
 }
-employeeLogggedIn(){
-  return !!localStorage.getItem('token')
-}
-
-getToken(){
-  return localStorage.getItem('token')
-}
-
-adminLogout(){
-  return localStorage.removeItem('token')
-  this.routes.navigate(['/home']);
-}
-logout(){
-  return localStorage.removeItem('token')
-}
-}
-  
-
-

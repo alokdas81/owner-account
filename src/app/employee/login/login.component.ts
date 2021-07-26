@@ -41,6 +41,7 @@ name:any | undefined;
       if (this.loginMode) {
         this._authService.logIn(email, password).subscribe(
           (res) => {
+            localStorage.clear();
             localStorage.setItem('employee', JSON.stringify(res.employee));
             console.log(res);
             localStorage.setItem('token', res.token);

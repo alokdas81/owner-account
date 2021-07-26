@@ -13,19 +13,19 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent},
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
 
-  { path: 'admin', loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule) }, 
+  { path: 'admin', loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule) },
   { path: 'employee', loadChildren: () => import('../employee/employee.module').then(m => m.EmployeeModule) },
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
 
-  
-  
 
 
-  
+
+
+
   { path: '404', component: NotFoundComponent},
   { path: '**', redirectTo: '/404', pathMatch: 'full'}
 
-  
+
 ];
 
 @NgModule({
