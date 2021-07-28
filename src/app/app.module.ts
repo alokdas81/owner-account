@@ -2,7 +2,7 @@ import { TokenIntercepterService } from './auth/token-intercepter.service';
 import { AuthGuard } from 'src/app/auth.guard';
 import { PipesModule } from './pipes.module';
 import { SigninComponent } from './auth/signin/signin.component';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,8 @@ import { AdminModule } from './admin/admin.module';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { EmployeeModule } from './employee/employee.module';
 import { ToastrModule } from 'ngx-toastr';
+import {FontAwesomeModule}from '@fortawesome/angular-fontawesome'
+
 
 
 
@@ -35,8 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     SidenavListComponent,
     NotFoundComponent,
 
- 
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -50,17 +52,20 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     HttpClientModule,
     PipesModule,
+    FontAwesomeModule,
     // AdminModule,
     EmployeeModule,
     ToastrModule.forRoot(),
 
+
   ],
-  exports: [],
+  exports: [FontAwesomeModule],
   providers: [AuthGuard,{
     provide:HTTP_INTERCEPTORS,
     useClass:TokenIntercepterService,
     multi:true
   }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

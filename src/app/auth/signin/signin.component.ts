@@ -52,18 +52,21 @@ export class SigninComponent implements OnInit {
         this._authservice.signIn(email, password).subscribe(
           (res) => {
             localStorage.clear();
-            this.winMassage = 'Login Successfully!';
+           // this.winMassage = 'Login Successfully!';
             console.log(res);
             if(res.admin){
+              this.toastr.success('You have successfully login!', 'Welcome');
               localStorage.setItem('admin', JSON.stringify(res.admin));
               localStorage.setItem('token', res.token);
-              this.routes.navigate(['/admin/admin']);
+              this.routes.navigate(['admin/dashboard']);
+            }else{
+              this.toastr.error("Please cheack email and password!","Opps!");
             }
 
           },
 
           (err) => {
-            this.error = 'Check Email and Password!';
+           this.toastr.error("Please cheack email and password!","Opps!");
             console.log(err);
             this.routes.navigate(['/signin']);
           }

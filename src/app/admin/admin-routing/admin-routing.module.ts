@@ -1,3 +1,4 @@
+import { AdminDashboardComponent } from './../admin-dashboard/admin-dashboard.component';
 import { EmployeeDeleteComponent } from './../employee-delete/employee-delete.component';
 import { EmployeeUpdateComponent } from './../employee-update/employee-update.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { EmployeeKpiDetailsComponent } from '../employee-kpi-details/employee-kp
 
 const routes: Routes = [
   { path: 'admin',canActivate:[AuthGuard], component: EmployeeListComponent },
+  { path: 'dashboard',canActivate:[AuthGuard], component: AdminDashboardComponent },
   { path: 'details/:emp_id',canActivate:[AuthGuard], component: EmployeeDetailsComponent },
   { path: 'kpi_details/:emp_id',canActivate:[AuthGuard], component: EmployeeKpiDetailsComponent },
   { path: 'delete/:emp_id',canActivate:[AuthGuard], component: EmployeeDeleteComponent },

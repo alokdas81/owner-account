@@ -4,6 +4,7 @@ import { RepositoryService } from 'src/app/service/repo.service';
 import { Colleague } from './../../employeedetails';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons"
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,11 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+
+  faEnvelope=faEnvelope;
+  faMapMarkedAlt=faMapMarkedAlt;
+  faPhone=faPhone;
+  faDatabase=faDatabase;
   public displayedColumns = [
     'emp_id',
     'f_name',
@@ -27,7 +33,9 @@ export class DashboardComponent implements OnInit {
 
   emp_fname=this._name.f_name;
   emp_lname=this._name.l_name;
-   
+  emp_email=this._name.email;
+  emp_phone=this._name.phone;
+
   constructor(
     private repoService: RepositoryService,
     private router: Router,
@@ -55,5 +63,5 @@ export class DashboardComponent implements OnInit {
   }
 
 
- 
+
 }

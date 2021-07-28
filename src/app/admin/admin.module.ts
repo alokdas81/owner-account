@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { EmployeeKpiDetailsComponent } from './employee-kpi-details/employee-kpi-details.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import {FontAwesomeModule}from '@fortawesome/angular-fontawesome'
 
 
 export interface Admin {
@@ -33,14 +35,16 @@ export interface Admin {
     EmployeeUpdateComponent,
     EmployeeDeleteComponent,
     EmployeeKpiDetailsComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    ReactiveFormsModule
-  
+    ReactiveFormsModule,
+    FontAwesomeModule
+
   ],
   exports: [EmployeeListComponent, EmployeeDetailsComponent],
 })

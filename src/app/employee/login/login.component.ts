@@ -1,5 +1,6 @@
 import { Employee } from './../../employeedetails';
 import { Component, OnInit } from '@angular/core';
+import {ToastrService} from 'ngx-toastr'
 import {
   EmailValidator,
   FormControl,
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 name:any | undefined;
 
   loginData!: {};
-  constructor(private _authService: AuthService, private routes: Router) {}
+  constructor(private _authService: AuthService, private routes: Router, private toastr:ToastrService) {}
 
   ngOnInit(): void {
     this.Form = new FormGroup({
@@ -42,14 +43,19 @@ name:any | undefined;
         this._authService.logIn(email, password).subscribe(
           (res) => {
             localStorage.clear();
-            localStorage.setItem('employee', JSON.stringify(res.employee));
-            console.log(res);
-            localStorage.setItem('token', res.token);
+            if(res.employee){
+              this.toastr.success('You have successfully login!', 'Welcome');
+              localStorage.setItem('employee', JSON.stringify(res.employee));
+              console.log(res);
+              localStorage.setItem('token', res.token);
+              this.routes.navigate([`/employee/dashboard/${res.employee.emp_id}`]);
+            }else{
+              this.toastr.error("Please cheack email and password!","Opps!");
+            }
 
-            this.routes.navigate([`/employee/dashboard/${res.employee.emp_id}`]);
           },
           (err) => {
-            this.error = err.error.error.message;
+            this.toastr.error("Please cheack email and password!","Opps!");
             console.log(err);
             this.routes.navigate(['/login']);
           }

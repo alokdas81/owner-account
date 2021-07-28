@@ -10,13 +10,21 @@ th.mat-header-cell {
     max-width: 300px;
 }
 .card-container {
-    /*  not needed styles to reflect it */ 
+    /*  not needed styles to reflect it */
     padding: 10px;
     color: blue;
     width: 100%;
-  
+
     /* needed styles below */
     display: flex;
     justify-content: space-between;
     text-align: center;
   }
+
+.card {
+  margin-top: 125px;
+  background-color:ghostwhite;
+}
+img {
+  margin-top: -80px;
+}

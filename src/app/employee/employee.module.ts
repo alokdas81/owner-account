@@ -6,6 +6,9 @@ import { EmployeeKpiComponent } from './employee-kpi/employee-kpi.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
+
+
 
 const routes: Routes = [
   { path: 'dashboard/:id', component: DashboardComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
+
+
   ],
   exports: [RouterModule],
 })
