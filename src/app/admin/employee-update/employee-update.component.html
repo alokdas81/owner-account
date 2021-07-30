@@ -79,7 +79,17 @@
           <mat-error *ngIf="hasError('phone', 'maxlength')"
             >You have more than 15 characters</mat-error
           >
+
         </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Employee Status</mat-label>
+          <mat-select formControlName="status"  >
+            <mat-option *ngFor="let status of employee_status" [value]="status.value">
+              {{status.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
 
         <mat-form-field appearance="fill">
           <mat-label>Supervisor Name</mat-label>

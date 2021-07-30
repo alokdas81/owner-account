@@ -3,7 +3,7 @@
     <mat-card-title>Employee Kpi</mat-card-title>
     <br />
 <mat-card-content>
-    <mat-form
+    <form
       [formGroup]="employeeForm"
       autocomplete="off"
       novalidate
@@ -134,7 +134,7 @@
   <button mat-raised-button color="primary" [disabled]="!employeeForm.valid">Submit</button>
   <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
 </mat-card-actions>
-</mat-form>
+</form>
 </mat-card-content>
 
   </mat-card>

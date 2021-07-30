@@ -11,6 +11,11 @@ interface supers {
   viewValue: string;
 }
 
+interface status {
+  value: number;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-employee-update',
   templateUrl: './employee-update.component.html',
@@ -51,13 +56,17 @@ export class EmployeeUpdateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(20),
       ]),
+      status: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
       sup_name: new FormControl('', [
         Validators.required,
         Validators.maxLength(60),
       ]),
     });
-    this.getEmployeeById();
     this.getSupervisor();
+    this.getEmployeeById();
 
     /* let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
     let employeeByIdUrl: string = `details/${employeeId}`;
@@ -109,7 +118,12 @@ export class EmployeeUpdateComponent implements OnInit {
     this.repository.getData(employeeByIdUrl).subscribe(
       (res) => {
         this.employee = res as Employee;
-        this.employeeForm.patchValue({...this.employee,sup_name:this.employee.sup_id});
+        this.employeeForm.patchValue({
+          ...this.employee,
+          sup_name: this.employee.sup_id,
+          status:this.employee.status
+
+        });
       },
       (_error) => {
         //error massage
@@ -137,12 +151,14 @@ export class EmployeeUpdateComponent implements OnInit {
     l_name: string;
     email: string;
     phone: number;
+    status: number;
     sup_id: number;
   }) => {
     (this.employee.f_name = employeeFormValue.f_name),
       (this.employee.l_name = employeeFormValue.l_name),
       (this.employee.email = employeeFormValue.email),
       (this.employee.phone = employeeFormValue.phone),
+      (this.employee.status = employeeFormValue.status),
       (this.employee.sup_id = employeeFormValue.sup_id);
 
     let apiUrl = `update/${this.employee.emp_id}`;
@@ -158,4 +174,9 @@ export class EmployeeUpdateComponent implements OnInit {
   };
 
   super: supers[] = [];
+
+  employee_status: status[] = [
+    { value: 1, viewValue: 'Supervisor' },
+    { value: 0, viewValue: 'Employee' },
+  ];
 }

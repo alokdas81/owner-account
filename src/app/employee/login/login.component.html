@@ -1,9 +1,9 @@
 
-<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
-    <mat-card-header>
+<div class="login-form-flex" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box" style="text-align: center;">
+
       <mat-card-title>Employee Log In</mat-card-title>
-    </mat-card-header>
+     <br>
      <br>
 
     <form class="example-form" [formGroup]="Form" (ngSubmit)='logIn()'>
@@ -11,16 +11,18 @@
         <mat-form-field class="example-full-width">
           <input  matInput formControlName="email" name="email" placeholder="Username">
           <!-- <span class= "red" *ngIf="email && email.invalid && (email.dirty || email.touched)">This field is required</span> -->
-        </mat-form-field>
+        </mat-form-field><br>
 
         <mat-form-field class="example-full-width">
           <input matInput formControlName="password" placeholder="Password">
          <!-- // <span class= "red" *ngIf="password && password.invalid && (password.dirty || password.touched)">This field is required</span> -->
-        </mat-form-field>
+        </mat-form-field><br>
 
 
       </mat-card-content>
+
       <button mat-stroked-button color="accent" class="btn-block">Log-in</button>
+
     </form>
   </mat-card>
 

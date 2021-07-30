@@ -141,6 +141,7 @@ app.put("/update/:id", verifyToken, function (req, res) {
   var l_name = req.body.l_name;
   var phone = req.body.phone;
   var email = req.body.email;
+  var status =req.body.status;
   var sup_id = req.body.sup_id;
   console.log(req.body);
 
@@ -155,6 +156,8 @@ app.put("/update/:id", verifyToken, function (req, res) {
     email +
     "',sup_id='" +
     sup_id +
+    "',status='" +
+    status +
     "' where emp_id='" +
     id +
     "'";

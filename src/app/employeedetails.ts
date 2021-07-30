@@ -9,6 +9,7 @@ export interface Detail{
        phone:number;
        email:string;
        sup_id: number;
+       status:number;
 
 
     details?: Detail[];
