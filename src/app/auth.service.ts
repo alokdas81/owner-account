@@ -46,11 +46,11 @@ export class AuthService {
   }
 
   adminLogout() {
-    this.routes.navigate(['/home']);
+    this.routes.navigate(['/']);
     return localStorage.removeItem('admin');
   }
   logout() {
-    this.routes.navigate(['/home']);
+    this.routes.navigate(['/']);
     return localStorage.removeItem('employee');
 
   }

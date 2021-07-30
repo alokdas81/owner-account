@@ -4,6 +4,7 @@ import { RepositoryService } from 'src/app/service/repo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee, EmployeeForAdd } from 'src/app/employeedetails';
 import { Location } from '@angular/common';
+import { Supervisor } from './../../employeedetails';
 
 interface supers {
   value: string;
@@ -19,6 +20,7 @@ export class EmployeeUpdateComponent implements OnInit {
   // public errorMessage: string = '';
   public employee!: Employee;
   public employeeForm!: FormGroup;
+  Supervisors!: Supervisor[];
 
   constructor(
     private location: Location,
@@ -49,18 +51,13 @@ export class EmployeeUpdateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(20),
       ]),
-      availability: new FormControl('', [Validators.required]),
-      ontime: new FormControl('', [Validators.required]),
-      punctuality: new FormControl('', [Validators.required]),
-      regularity: new FormControl('', [Validators.required]),
-      timetorepair: new FormControl('', [Validators.required]),
-      criticalproblemsolving: new FormControl('', [Validators.required]),
-      clienthandling: new FormControl('', [Validators.required]),
-      innovative: new FormControl('', [Validators.required]),
-      teamPlayer: new FormControl('', [Validators.required]),
-      dependibility: new FormControl('', [Validators.required]),
+      sup_name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(60),
+      ]),
     });
     this.getEmployeeById();
+    this.getSupervisor();
 
     /* let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
     let employeeByIdUrl: string = `details/${employeeId}`;
@@ -69,14 +66,38 @@ export class EmployeeUpdateComponent implements OnInit {
       this.employee = res as Employee;
 
       console.log(res);
-     
+
     })*/
   }
+
+  private getSupervisor = () => {
+    // let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
+    let employeeByIdUrl: string = `supervisor/`;
+
+    this.repository.getSupervisors(employeeByIdUrl).subscribe(
+      (res) => {
+        this.Supervisors = res as Supervisor[];
+        this.employeeForm.patchValue(this.employee);
+        this.pushValue();
+      },
+      (_error) => {
+        //error massage
+      }
+    );
+  };
 
   public onCancel = () => {
     this.location.back();
   };
 
+  public pushValue() {
+    this.Supervisors.forEach((item) => {
+      this.super.push({
+        viewValue: item.f_name,
+        value: item.emp_id.toString(),
+      });
+    });
+  }
   public compareItems(i1: any, i2: any) {
     return i1 && i2 && i1.id === i2.id;
   }
@@ -105,7 +126,7 @@ export class EmployeeUpdateComponent implements OnInit {
   };
 
   public updateemployee = (employeeFormValue: any) => {
-    console.log(this.employeeForm.value)
+    console.log(this.employeeForm.value);
     if (this.employeeForm.valid) {
       this.executeEmployeeUpdate(employeeFormValue);
     }
@@ -127,7 +148,7 @@ export class EmployeeUpdateComponent implements OnInit {
     let apiUrl = `update/${this.employee.emp_id}`;
     this.repository.update(apiUrl, this.employee).subscribe(
       (res) => {
-        //  $('#successModal').modal();
+        this.router.navigate(['admin/dashboard']);
       },
       (error) => {
         /* this.errorHandler.handleError(error);
@@ -136,10 +157,5 @@ export class EmployeeUpdateComponent implements OnInit {
     );
   };
 
-  super: supers[] = [
-    { value: 'steak-0', viewValue: 'Amar Baneerjee' },
-    { value: 'pizza-1', viewValue: 'Alok Das' },
-  ];
-
-  
+  super: supers[] = [];
 }

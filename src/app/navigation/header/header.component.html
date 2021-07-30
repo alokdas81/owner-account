@@ -13,7 +13,10 @@
                 <a *ngIf="_authService.adminLoggedIn()" routerLink="/admin/admin">Employee List</a>
             </li>
             <li>
-                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.adminLoggedIn() " routerLink="/signin" routerLinkActive="active">Admin Sign In</a>
+                <a *ngIf="_authService.adminLoggedIn()" routerLink="/admin/dashboard">Dashboard</a>
+            </li>
+            <li>
+                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.adminLoggedIn() && !_authService.employeeLogggedIn() " routerLink="/signin" routerLinkActive="active">Admin Sign In</a>
             </li>
             <li>
                 <a mat-button mat-raised-button color="accent" *ngIf="_authService.adminLoggedIn() " (click)="_authService.adminLogout()" >Sign Out</a>

@@ -6,12 +6,14 @@ import { RepositoryService } from 'src/app/service/repo.service';
 import { Component, OnInit } from '@angular/core';
 
 
+
+
 @Component({
-  selector: 'app-employee-kpi-details',
-  templateUrl: './employee-kpi-details.component.html',
-  styleUrls: ['./employee-kpi-details.component.css']
+  selector: 'app-kpi-details',
+  templateUrl: './kpi-details.component.html',
+  styleUrls: ['./kpi-details.component.css']
 })
-export class EmployeeKpiDetailsComponent implements OnInit {
+export class KpiDetailsComponent implements OnInit {
 
   public employee: Kpi | undefined;
   public showKpiDetails: any;
@@ -40,3 +42,6 @@ private getKpiById = () => {
     }
 
 }
+
+
+

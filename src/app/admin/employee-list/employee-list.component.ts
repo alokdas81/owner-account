@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -21,7 +22,8 @@ export class EmployeeListComponent implements OnInit {
   public dataSource = new MatTableDataSource<Admin>();
 
   @ViewChild(MatSort) sort!: MatSort;
-  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   _admin_name=JSON.parse(localStorage.getItem("admin") as string);
   admin_name=this._admin_name.f_name;
 
@@ -49,28 +51,28 @@ export class EmployeeListComponent implements OnInit {
   public redirectToDetails = (emp_id: string) => {
     let url: string = `/admin/details/${emp_id}`;
     this.router.navigate([url]);
-    
+
   }
 
   public redirectToUpdate = (emp_id: string) => {
-      const updateUrl: string = `/admin/update/${emp_id}`; 
-      this.router.navigate([updateUrl]); 
+      const updateUrl: string = `/admin/update/${emp_id}`;
+      this.router.navigate([updateUrl]);
   }
-  
+
 
   public redirectToDelete = (emp_id: string) => {
-    const deleteUrl: string = `admin/delete/${emp_id}`; 
-    this.router.navigate([deleteUrl]); 
+    const deleteUrl: string = `admin/delete/${emp_id}`;
+    this.router.navigate([deleteUrl]);
   }
- 
+
   public redirectToKpiDetails=(emp_id:string)=>{
     let kpiurl: string = `/admin/kpi_details/${emp_id}`;
     this.router.navigate([kpiurl]);
   }
-  
+
 
   applyFilter(event: any) {
-    
+
    const  filterQuery = event.target.value.trim().toLowerCase(); // Remove whitespace
     // filterValue = filterValue.value.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterQuery;
@@ -78,6 +80,7 @@ export class EmployeeListComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
 }

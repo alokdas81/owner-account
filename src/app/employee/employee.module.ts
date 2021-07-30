@@ -7,17 +7,20 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
+import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
+
 
 
 
 const routes: Routes = [
   { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'kpi/:id', component: EmployeeKpiComponent },
-  {path:'login',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'kpi_details/:id',component:KpiDetailsComponent}
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, EmployeeKpiComponent, LoginComponent],
+  declarations: [DashboardComponent, EmployeeKpiComponent, LoginComponent, KpiDetailsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

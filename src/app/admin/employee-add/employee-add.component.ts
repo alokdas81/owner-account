@@ -1,9 +1,11 @@
+import { ToastrService } from 'ngx-toastr';
 import { Supervisor } from './../../employeedetails';
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from 'src/app/service/repo.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { EmployeeForAdd } from 'src/app/employeedetails';
+
 
 
 
@@ -28,7 +30,7 @@ export class EmployeeAddComponent implements OnInit {
 
 
 
-  constructor(private location: Location, private repository: RepositoryService) { }
+  constructor(private location: Location, private repository: RepositoryService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.employeeForm = new FormGroup({
@@ -43,8 +45,8 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   public hasError = (controlName: string, errorName: string) =>{
-    //return this.employeeForm.controls[controlName].hasError(errorName);
-    return false;
+    return this.employeeForm.controls[controlName].hasError(errorName);
+
   }
 
 
@@ -60,7 +62,7 @@ export class EmployeeAddComponent implements OnInit {
         this.pushValue();
       },
       (_error) => {
-        //error massage
+        this.toastr.error("Supervisor name is not available","Check again!")
       }
     );
   };
@@ -102,8 +104,8 @@ export class EmployeeAddComponent implements OnInit {
         this.location.back();
       },
       (error => {
-        //temporary as well
-        this.location.back();
+       this.toastr.error("Wrong input!","Check again!")
+        //this.location.back();
       })
     )
   }

@@ -1,10 +1,11 @@
-import { Employee } from 'src/app/employeedetails';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from 'src/app/service/repo.service';
 import { Colleague } from './../../employeedetails';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons"
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,8 @@ import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-so
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   faEnvelope=faEnvelope;
   faMapMarkedAlt=faMapMarkedAlt;
@@ -24,7 +27,8 @@ export class DashboardComponent implements OnInit {
     'email',
     'phone',
     'sup_id',
-    'Kpi_details',
+    'Kpi_Add',
+    'kpi_details',
   ];
 
   public colleague = new MatTableDataSource<Colleague>();
@@ -57,11 +61,20 @@ export class DashboardComponent implements OnInit {
     let url: string = `/employee/kpi/${emp_id}`;
     this.router.navigate([url]);
   }
+
+
+  public redirectToKpiDetails=(emp_id:string)=>{
+    let kpiurl: string = `/employee/kpi_details/${emp_id}`;
+    this.router.navigate([kpiurl]);
+  }
   applyFilter(event: any) {
     const filterQuery = event.target.value.trim().toLowerCase();
     this.colleague.filter = filterQuery;
   }
 
+  ngAfterViewInit(): void {
+    this.colleague.paginator = this.paginator;
+  }
 
 
 }

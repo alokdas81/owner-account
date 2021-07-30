@@ -44,6 +44,7 @@ app.post("/create", verifyToken, function (req, res) {
 
   console.log(req.body);
 
+try {
   var sql =
     "insert into employee_master(f_name,l_name,phone,email,sup_id) values ('" +
     f_name +
@@ -56,9 +57,19 @@ app.post("/create", verifyToken, function (req, res) {
     "','" +
     sup_id +
     "')";
-  con.query(sql);
-  console.log("Connected!");
-  res.end('{"res":"Saved"}');
+  con.query(sql,function(error, results, fields){
+    if(results){
+      console.log("Connected!");
+      res.end('{"res":"Saved"}');
+    }
+    if(error) {
+      throw error;
+    }
+  });
+} catch (error) {
+  console.log(error);
+  res.end("Duplicate entry!");
+}
 });
 
 app.post("/add/:id", function (req, res) {
