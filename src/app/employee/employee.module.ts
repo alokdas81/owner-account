@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
 import { KpiDetailsComponent } from './kpi-details/kpi-details.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
@@ -27,6 +29,7 @@ const routes: Routes = [
     MaterialModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    FlexLayoutModule
 
 
   ],
