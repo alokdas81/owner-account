@@ -5,6 +5,8 @@ import { RepositoryService } from 'src/app/service/repo.service';
 import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { EmployeeForAdd } from 'src/app/employeedetails';
+import { of } from 'rxjs';
+
 
 
 
@@ -13,6 +15,12 @@ import { EmployeeForAdd } from 'src/app/employeedetails';
 
 interface supers{
   value: string;
+  viewValue: string;
+}
+
+
+interface status{
+  value: number;
   viewValue: string;
 }
 
@@ -100,11 +108,12 @@ export class EmployeeAddComponent implements OnInit {
     let apiUrl = 'create/';
     this.repository.create(apiUrl, employee)
       .subscribe(res => {
-        //this is temporary, until we create our dialogs
+        if(res)
+        console.log(res);
         this.location.back();
       },
       (error => {
-       this.toastr.error("Wrong input!","Check again!")
+       this.toastr.error("Wrong input!","Email is already exists!")
         //this.location.back();
       })
     )
@@ -114,5 +123,15 @@ export class EmployeeAddComponent implements OnInit {
 
 
   ];
+
+
+  employee:status[]=[
+
+    {value:1,viewValue:"Supervisor"},
+    {value:0,viewValue:"Employee"}
+  ];
+
+
+
 
 }

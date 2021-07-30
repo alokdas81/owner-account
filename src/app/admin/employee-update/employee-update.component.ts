@@ -109,7 +109,7 @@ export class EmployeeUpdateComponent implements OnInit {
     this.repository.getData(employeeByIdUrl).subscribe(
       (res) => {
         this.employee = res as Employee;
-        this.employeeForm.patchValue(this.employee);
+        this.employeeForm.patchValue({...this.employee,sup_name:this.employee.sup_id});
       },
       (_error) => {
         //error massage

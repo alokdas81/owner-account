@@ -44,38 +44,39 @@ app.post("/create", verifyToken, function (req, res) {
 
   console.log(req.body);
 
-try {
-  var sql =
-    "insert into employee_master(f_name,l_name,phone,email,sup_id) values ('" +
-    f_name +
-    "','" +
-    l_name +
-    "','" +
-    phone +
-    "','" +
-    email +
-    "','" +
-    sup_id +
-    "')";
-  con.query(sql,function(error, results, fields){
-    if(results){
-      console.log("Connected!");
-      res.end('{"res":"Saved"}');
-    }
-    if(error) {
-      throw error;
-    }
-  });
-} catch (error) {
-  console.log(error);
-  res.end("Duplicate entry!");
-}
+  try {
+    var sql =
+      "insert into employee_master(f_name,l_name,phone,email,sup_id) values ('" +
+      f_name +
+      "','" +
+      l_name +
+      "','" +
+      phone +
+      "','" +
+      email +
+      "','" +
+      sup_id +
+      "')";
+    con.query(sql, function (error, results, fields) {
+    //  console.log({ error, results, fields });
+      if (error) {
+        res.status(400).json({ error: error.message, code: error.code });
+      }
+      if (results) {
+        console.log("Connected!");
+        res.end('{"res":"Saved"}');
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: error.message });
+  }
 });
 
 app.post("/add/:id", function (req, res) {
   console.log("test");
   var emp_id = req.params.id;
-  var sup_id=req.body.sup_id;
+  var sup_id = req.body.sup_id;
   var availability = req.body.availability;
   var ontime = req.body.ontime;
   var punctuality = req.body.punctuality;
@@ -89,7 +90,7 @@ app.post("/add/:id", function (req, res) {
   var given_by_id = req.body.given_by_id;
   var submit_date = req.body.submit_date;
   var tenure = req.body.tenure;
-  var feedback_emp_id= req.body.feedback_emp_id;
+  var feedback_emp_id = req.body.feedback_emp_id;
 
   console.log(req.body);
   var sql =
@@ -98,8 +99,8 @@ app.post("/add/:id", function (req, res) {
     "','" +
     sup_id +
     "','" +
-    feedback_emp_id+
-    "','"+
+    feedback_emp_id +
+    "','" +
     availability +
     "','" +
     ontime +
@@ -164,9 +165,6 @@ app.put("/update/:id", verifyToken, function (req, res) {
 });
 
 //get kpi list ny id
-
-
-
 
 app.get("/kpi/:id", function (req, res) {
   var id = req.params.id;
@@ -238,9 +236,8 @@ app.get("/details/:id", verifyToken, function (req, res) {
   //res.end("Save done!!");
 });
 
-
 // get employee Kpi by id
-app.get("/kpi_details/:id",verifyToken ,function (req, res) {
+app.get("/kpi_details/:id", verifyToken, function (req, res) {
   var id = req.params.id;
   console.log(id);
   var sql = "select * from employee_kpi where emp_id='" + id + "'";
@@ -263,7 +260,7 @@ app.post("/signIn", async function (req, res) {
     `select * from employee_master where roll=1 and email="${email}" and password="${password}"`,
     async function (error, results, fields) {
       console.log({ error, results });
-      var admin=results.length?{...results[0]}:{};
+      var admin = results.length ? { ...results[0] } : {};
       if (error) {
         res.send({
           code: 400,
@@ -281,7 +278,7 @@ app.post("/signIn", async function (req, res) {
               code: 200,
               success: "login sucessfull",
               token,
-              admin:admin
+              admin: admin,
             });
           } else {
             res.send({
@@ -358,7 +355,7 @@ app.post("/login", async function (req, res) {
     async function (error, results, fields) {
       console.log(error);
       console.log({ error, results });
-      var employee=results.length?{...results[0]}:{};
+      var employee = results.length ? { ...results[0] } : {};
       if (error) {
         res.send(Status400Res);
       } else {
@@ -372,7 +369,7 @@ app.post("/login", async function (req, res) {
               code: 200,
               success: "login sucessfull",
               token,
-              employee:employee
+              employee: employee,
             });
           } else {
             res.send({
@@ -393,14 +390,11 @@ app.post("/login", async function (req, res) {
   console.log("Connected!");
 });
 
-
-
-app.delete("/delete/:id", verifyToken,function (req, res) {
+app.delete("/delete/:id", verifyToken, function (req, res) {
   var id = req.params.id;
   console.log("test");
   console.log(req.body);
-  var sql =
-    "DELETE FROM employee_master where emp_id='" + id + "'";
+  var sql = "DELETE FROM employee_master where emp_id='" + id + "'";
   con.query(sql);
   console.log("Connected!");
   console.log(sql);

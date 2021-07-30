@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'kpi/:id', component: EmployeeKpiComponent },
   {path:'login',component:LoginComponent},
-  {path:'kpi_details/:id',component:KpiDetailsComponent}
+  {path:'kpi_details/:emp_id',component:KpiDetailsComponent}
 ];
 
 @NgModule({
