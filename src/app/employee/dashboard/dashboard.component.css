@@ -1,14 +1,4 @@
-table {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    min-width: 500px;
-}
 
-th.mat-header-cell {
-    text-align: left;
-    max-width: 300px;
-}
 .card-container {
     /*  not needed styles to reflect it */
     padding: 10px;
@@ -22,9 +12,17 @@ th.mat-header-cell {
   }
 
 .card {
-  margin-top: 125px;
+
   background-color:ghostwhite;
 }
-img {
-  margin-top: -80px;
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  max-width: 300px;
 }

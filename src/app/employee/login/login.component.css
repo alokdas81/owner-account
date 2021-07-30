@@ -15,6 +15,7 @@ main-wrapper{
   justify-content: center;
   align-items: center;
   height: 100%;
+
 }
 
 .button-flex-container {
@@ -22,3 +23,4 @@ main-wrapper{
   width: 100%;
   justify-content: flex-end;
 }
+
