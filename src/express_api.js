@@ -23,8 +23,8 @@ var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Admin@008",
-  port: 3306,
+  password: "", //"Admin@008"
+  port: 3307,
   database: "employee",
 });
 
@@ -45,12 +45,14 @@ app.post("/create", verifyToken, function (req, res) {
   var phone = req.body.phone;
   var email = req.body.email;
   var sup_id = req.body.sup_id;
+  var status=req.body.sup_status;
+  var password = req.body.password;
 
   console.log(req.body);
 
   try {
     var sql =
-      "insert into employee_master(f_name,l_name,phone,email,sup_id) values ('" +
+      "insert into employee_master(f_name,l_name,phone,email,status,password,sup_id) values ('" +
       f_name +
       "','" +
       l_name +
@@ -58,6 +60,10 @@ app.post("/create", verifyToken, function (req, res) {
       phone +
       "','" +
       email +
+      "','" +
+      status +
+      "','" +
+      password +
       "','" +
       sup_id +
       "')";
@@ -131,6 +137,7 @@ app.post("/add/:id", function (req, res) {
     "','" +
     tenure +
     "')";
+    console.log(`sql`,sql)
   con.query(sql);
   console.log("Connected!");
   res.end('{"res":"Saved"}');

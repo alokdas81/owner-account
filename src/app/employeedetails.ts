@@ -21,6 +21,7 @@ export interface EmployeeForAdd {
     phone:number;
     email:string;
     status: string;
+    password: string;
     sup_id: number;
 }
 

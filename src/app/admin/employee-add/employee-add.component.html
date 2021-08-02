@@ -28,6 +28,13 @@
       </mat-form-field>
 
     <mat-form-field>
+        <input matInput type="text" placeholder="Employee's password" formControlName="password" id="password">
+        <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+        <mat-error *ngIf="hasError('password', 'required')">password is required</mat-error>
+        <mat-error *ngIf="hasError('password', 'maxlength')">You have more than 100 characters</mat-error>
+      </mat-form-field>
+
+    <mat-form-field>
         <input matInput type="text" placeholder="Employee's phone no" formControlName="phone" id="phone">
         <mat-hint align="end">Not more then 15 characters long.</mat-hint>
         <mat-error *ngIf="hasError('phone', 'required')">phone is required</mat-error>
