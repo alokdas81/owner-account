@@ -23,10 +23,14 @@ var mysql = require("mysql");
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  port: 3307,
+  password: "Admin@008",
+  port: 3306,
   database: "employee",
 });
+
+app.get('/ping',(req,res)=>{
+  res.send('pong');
+})
 
 con.connect(function (err) {
   if (err) throw err;

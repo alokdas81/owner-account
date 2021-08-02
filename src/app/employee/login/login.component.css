@@ -3,7 +3,7 @@ main-wrapper{
   width:700px;
 }
 .btn-block:hover{
-  background-color: blue;
+  background-color: #0d6efd;
   color: white;
 }
 .mat-card{

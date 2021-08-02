@@ -4,13 +4,15 @@ a {
 }
 
 a:hover, a:active{
-    color:yellow;
+    color:black;
+    background-color: aliceblue;
 }
 
 .navigation-items{
     list-style-type: none;
     padding: 0;
     margin: 0;
+
 }
 
 mat-toolbar{
