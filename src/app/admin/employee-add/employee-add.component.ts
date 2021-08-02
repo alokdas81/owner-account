@@ -119,9 +119,9 @@ export class EmployeeAddComponent implements OnInit {
   private executeEmployeeAdd = (employeeFormValue: {
     f_name: string;
     l_name: string;
-    email: any;
+    email:string;
     phone: number;
-    status: string;
+    status: number;
     password: string;
     sup_name: string;
   }) => {

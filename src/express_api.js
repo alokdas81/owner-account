@@ -45,7 +45,7 @@ app.post("/create", verifyToken, function (req, res) {
   var phone = req.body.phone;
   var email = req.body.email;
   var sup_id = req.body.sup_id;
-  var status=req.body.sup_status;
+  var status=req.body.status;
   var password = req.body.password;
 
   console.log(req.body);
