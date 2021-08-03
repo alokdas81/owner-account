@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class EmployeeListComponent implements OnInit {
 
-  public displayedColumns = ['emp_id', 'f_name', 'l_name','email','phone','sup_id', 'details', 'update', 'delete','kpidetails'
+  public displayedColumns = ['status','emp_id', 'f_name', 'l_name','email','phone','sup_id', 'details', 'update', 'delete','kpidetails'
 ];
   public dataSource = new MatTableDataSource<Admin>();
 
@@ -36,7 +36,7 @@ export class EmployeeListComponent implements OnInit {
 
   public getAllEmployees = () => {
     this.repoService.getData('list/') .subscribe(res => {
-      console.warn(res);
+     console.warn(res);
       this.dataSource.data = res as Admin[],
         ( err: { status: string; })=>{
         if(err instanceof HttpErrorResponse){
@@ -82,5 +82,6 @@ export class EmployeeListComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
+
 
 }

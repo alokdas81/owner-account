@@ -10,14 +10,14 @@ import {
 } from '@angular/forms';
 import { Location } from '@angular/common';
 import { EmployeeForAdd } from 'src/app/employeedetails';
-import { of } from 'rxjs';
+
 
 interface supers {
   value: string;
   viewValue: string;
 }
 
-interface status {
+interface role {
   value: number;
   viewValue: string;
 }
@@ -38,7 +38,7 @@ export class EmployeeAddComponent implements OnInit {
     private location: Location,
     private repository: RepositoryService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.employeeForm = new FormGroup({
@@ -58,7 +58,7 @@ export class EmployeeAddComponent implements OnInit {
         Validators.required,
         Validators.maxLength(15),
       ]),
-      status: new FormControl('', [
+      role: new FormControl('', [
         Validators.required,
         Validators.maxLength(1),
       ]),
@@ -119,9 +119,9 @@ export class EmployeeAddComponent implements OnInit {
   private executeEmployeeAdd = (employeeFormValue: {
     f_name: string;
     l_name: string;
-    email:string;
+    email: string;
     phone: number;
-    status: number;
+    role: number;
     password: string;
     sup_name: string;
   }) => {
@@ -130,7 +130,7 @@ export class EmployeeAddComponent implements OnInit {
       l_name: employeeFormValue.l_name,
       email: employeeFormValue.email,
       phone: employeeFormValue.phone,
-      status: employeeFormValue.status,
+      role: employeeFormValue.role,
       password: employeeFormValue.password,
       sup_id: Number(employeeFormValue.sup_name),
     };
@@ -150,8 +150,10 @@ export class EmployeeAddComponent implements OnInit {
 
   super: supers[] = [];
 
-  employee: status[] = [
-    { value: 1, viewValue: 'Supervisor' },
-    { value: 0, viewValue: 'Employee' },
+  employee: role[] = [
+    { value: 0, viewValue: 'Supervisor' },
+    { value: 1, viewValue: 'Admin' },
+    { value: 2, viewValue: 'Employee' },
   ];
+
 }

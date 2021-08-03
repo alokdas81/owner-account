@@ -3,9 +3,52 @@ var app = express();
 var bodyParser = require("body-parser");
 var bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
+var multer = require("multer");
+
+var upload = multer({ storage: storage });
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//image uploads
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'assets/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now + file.originalname)
+  }
+})
+
+app.post('/uploads/:id', upload.single('image'), function (req, res, next) {
+  var id = req.params.id;
+  var fileinfo = req.file.originalname;
+  var title = req.body.title;
+  console.log(req.file);
+
+  try{
+    var sql=`UPDATE employee_master set image="${fileinfo}" where emp_id="${id}"`
+    console.log(sql);
+    con.query(sql, function (error, results, fields) {
+      //  console.log({ error, results, fields });
+      if (error) {
+        res.status(400).json({ error: error.message, code: error.code });
+      }
+      if (results) {
+        console.log("Connected!");
+        res.end('{"res":"Saved"}');
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: error.message });
+  }
+ // console.log(title);
+ // res.send(fileinfo);
+});
+
 
 /* Permission for CORS policy */
 app.all("/*", function (req, res, next) {
@@ -19,6 +62,7 @@ app.all("/*", function (req, res, next) {
 });
 
 var mysql = require("mysql");
+const { convertCompilerOptionsFromJson } = require("typescript");
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -28,7 +72,7 @@ var con = mysql.createConnection({
   database: "employee",
 });
 
-app.get('/ping',(req,res)=>{
+app.get('/ping', (req, res) => {
   res.send('pong');
 })
 
@@ -45,14 +89,14 @@ app.post("/create", verifyToken, function (req, res) {
   var phone = req.body.phone;
   var email = req.body.email;
   var sup_id = req.body.sup_id;
-  var status=req.body.status;
+  var role = req.body.role;
   var password = req.body.password;
 
   console.log(req.body);
 
   try {
     var sql =
-      "insert into employee_master(f_name,l_name,phone,email,status,password,sup_id) values ('" +
+      "insert into employee_master(f_name,l_name,phone,email,role,password,sup_id) values ('" +
       f_name +
       "','" +
       l_name +
@@ -61,14 +105,14 @@ app.post("/create", verifyToken, function (req, res) {
       "','" +
       email +
       "','" +
-      status +
+      role +
       "','" +
       password +
       "','" +
       sup_id +
       "')";
     con.query(sql, function (error, results, fields) {
-    //  console.log({ error, results, fields });
+      //  console.log({ error, results, fields });
       if (error) {
         res.status(400).json({ error: error.message, code: error.code });
       }
@@ -137,7 +181,7 @@ app.post("/add/:id", function (req, res) {
     "','" +
     tenure +
     "')";
-    console.log(`sql`,sql)
+  console.log(`sql`, sql)
   con.query(sql);
   console.log("Connected!");
   res.end('{"res":"Saved"}');
@@ -152,7 +196,7 @@ app.put("/update/:id", verifyToken, function (req, res) {
   var l_name = req.body.l_name;
   var phone = req.body.phone;
   var email = req.body.email;
-  var status =req.body.status;
+  var status = req.body.status;
   var sup_id = req.body.sup_id;
   console.log(req.body);
 
@@ -210,7 +254,7 @@ app.get("/list", function (req, res) {
 });
 
 app.get("/supervisor", function (req, res) {
-  var sql = "SELECT * FROM employee_master where status='1' ";
+  var sql = "SELECT * FROM employee_master where role=0 ";
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
@@ -221,6 +265,8 @@ app.get("/supervisor", function (req, res) {
   // console.log("Connected!");
   // res.end("Save done!!");
 });
+
+
 
 //get colleagues for employee
 app.get("/colleagues", verifyColleague, function (req, res) {
@@ -271,7 +317,7 @@ app.post("/signIn", async function (req, res) {
   var password = req.body.password;
   console.log("req", req.body);
   con.query(
-    `select * from employee_master where roll=1 and email="${email}" and password="${password}"`,
+    `select * from employee_master where role=1 and email="${email}" and password="${password}"`,
     async function (error, results, fields) {
       console.log({ error, results });
       var admin = results.length ? { ...results[0] } : {};
@@ -365,7 +411,7 @@ app.post("/login", async function (req, res) {
   };
 
   con.query(
-    `select * from employee_master where roll!=1 and email="${email}"`,
+    `select * from employee_master where role!=1 and email="${email}"`,
     async function (error, results, fields) {
       console.log(error);
       console.log({ error, results });
@@ -415,4 +461,4 @@ app.delete("/delete/:id", verifyToken, function (req, res) {
   res.end('{"res":"Delete"}');
 });
 
-var server = app.listen(3000, function () {});
+var server = app.listen(3000, function () { });

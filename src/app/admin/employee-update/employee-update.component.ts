@@ -140,7 +140,7 @@ export class EmployeeUpdateComponent implements OnInit {
   };
 
   public updateemployee = (employeeFormValue: any) => {
-    console.log(this.employeeForm.value);
+  //  console.log(this.employeeForm.value);
     if (this.employeeForm.valid) {
       this.executeEmployeeUpdate(employeeFormValue);
     }

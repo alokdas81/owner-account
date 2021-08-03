@@ -20,7 +20,7 @@ export interface EmployeeForAdd {
     l_name: string;
     phone:number;
     email:string;
-    status: number;
+    role: number;
     password: string;
     sup_id: number;
 }
