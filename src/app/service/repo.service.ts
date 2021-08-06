@@ -13,8 +13,9 @@ export class RepositoryService {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
 
-  public getColleagues = (route: string) => {
-    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+  public getEmployeeUnder = (route: string) => {
+    const user=JSON.parse(localStorage.getItem('data') as string);
+    return this.http.post(this.createCompleteRoute(route, environment.urlAddress),{email:user.email});
   }
 
   public getSupervisors = (route: string) => {

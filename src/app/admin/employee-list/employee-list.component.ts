@@ -24,7 +24,7 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  _admin_name=JSON.parse(localStorage.getItem("admin") as string);
+  _admin_name=JSON.parse(localStorage.getItem("data") as string);
   admin_name=this._admin_name.f_name;
 
   constructor(private repoService: RepositoryService, private router: Router) { }

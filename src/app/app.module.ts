@@ -22,7 +22,8 @@ import { AdminModule } from './admin/admin.module';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { EmployeeModule } from './employee/employee.module';
 import { ToastrModule } from 'ngx-toastr';
-import {FontAwesomeModule}from '@fortawesome/angular-fontawesome'
+import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 
 
@@ -56,6 +57,7 @@ import {FontAwesomeModule}from '@fortawesome/angular-fontawesome'
     // AdminModule,
     EmployeeModule,
     ToastrModule.forRoot(),
+    ShowHidePasswordModule
 
 
   ],

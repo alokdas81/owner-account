@@ -1,6 +1,6 @@
-<div class="login-form-flex" fxLayout="row" fxLayoutAlign="center center" >
+<div class="login-form-flex" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box" style="text-align: center">
-    <mat-card-title>Admin</mat-card-title>
+    <mat-card-title>Signin</mat-card-title>
     <br />
     <br />
     <form class="example-form" [formGroup]="Form" (ngSubmit)="signIn()">
@@ -14,9 +14,24 @@
         ><br />
 
         <mat-form-field class="example-full-width">
-          <input matInput formControlName="password" placeholder="Password" />
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+          />
         </mat-form-field>
+
         <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Select Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of employee" [value]="role.value">
+              {{ role.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </mat-card-content>
       <button mat-stroked-button color="accent" class="btn-block">
         Sign in

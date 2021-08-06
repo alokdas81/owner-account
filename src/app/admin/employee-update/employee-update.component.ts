@@ -48,6 +48,10 @@ export class EmployeeUpdateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(100),
       ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(100),
+      ]),
       phone: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
@@ -150,6 +154,7 @@ export class EmployeeUpdateComponent implements OnInit {
     f_name: string;
     l_name: string;
     email: string;
+    password: string;
     phone: number;
     status: number;
     sup_id: number;
@@ -157,6 +162,7 @@ export class EmployeeUpdateComponent implements OnInit {
     (this.employee.f_name = employeeFormValue.f_name),
       (this.employee.l_name = employeeFormValue.l_name),
       (this.employee.email = employeeFormValue.email),
+      (this.employee.password = employeeFormValue.password),
       (this.employee.phone = employeeFormValue.phone),
       (this.employee.status = employeeFormValue.status),
       (this.employee.sup_id = employeeFormValue.sup_id);

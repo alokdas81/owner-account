@@ -3,14 +3,14 @@
     <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
     </a>
-    <a mat-list-item *ngIf="_authService.adminLoggedIn()" routerLink="/admin/admin" (click)="onSidenavClose()">
+    <a mat-list-item *ngIf="_authService.masterLoggedIn()" routerLink="/admin/admin" (click)="onSidenavClose()">
         <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Employee List</span>
      </a>
 
-      <a mat-button mat-raised-button color="accent" *ngIf="!_authService.employeeLogggedIn() && !_authService.adminLoggedIn()" routerLink="/employee/login"  routerLinkActive="active" >Log In</a>
+      <a mat-button mat-raised-button color="accent" *ngIf="!_authService.masterLoggedIn() " routerLink="/employee/login"  routerLinkActive="active" >Log In</a>
 
 
-      <a mat-button mat-raised-button color="accent" *ngIf="_authService.employeeLogggedIn() " (click)="_authService.logout()" >Log Out</a>
+      <a mat-button mat-raised-button color="accent" *ngIf="_authService.masterLoggedIn() " (click)="_authService.masterLogout()" >Log Out</a>
 
 
 

@@ -15,12 +15,13 @@ export class AdminDashboardComponent implements OnInit {
   faDatabase=faDatabase;
 
 
-  _name=JSON.parse(localStorage.getItem("admin") as string);
+  _name=JSON.parse(localStorage.getItem("data") as string);
 
   admin_fname=this._name.f_name;
   admin_lname=this._name.l_name;
   admin_email=this._name.email;
   admin_phone=this._name.phone;
+  admin_image=this._name.image;
 
   constructor() { }
 

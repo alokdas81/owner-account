@@ -1,3 +1,4 @@
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -8,7 +9,9 @@ export const environment = {
   production: false,
   urlAddress: baseUrl,
   endPoints: {
-    auth: { signIn: `${baseUrl}/signIn` },
+    // auth: { signIn: `${baseUrl}/signIn` },
+    auth:{master:`${baseUrl}/masterlogin`},
+    Supervisor:{suplogin:`${baseUrl}/suplogin`},
     employee: {
       createEmployee: `${baseUrl}/path/to/create`,
       loginEmoployee: `${baseUrl}/login`,

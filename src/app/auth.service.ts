@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthResponce, EmpResponce } from './employeedetails';
+import { AuthResponce, EmpResponce, LogInResponce } from './employeedetails';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   email!: AuthResponce;
   password!: AuthResponce;
-  roll!: AuthResponce;
+  role!: AuthResponce;
 
   emp_email!: EmpResponce;
   emp_password!: EmpResponce;
@@ -20,10 +20,22 @@ export class AuthService {
 
   constructor(private httpclient: HttpClient, private routes: Router) {}
 
-  public signIn = (email: string, password: string): Observable<any> => {
-    return this.httpclient.post(environment.endPoints.auth.signIn, {
+  // public signIn = (email: string, password: string): Observable<any> => {
+  //   return this.httpclient.post(environment.endPoints.auth.signIn, {
+  //     email: email,
+  //     password: password,
+  //   });
+  // };
+
+  public master = (
+    email: string,
+    password: string,
+    role: number
+  ): Observable<any> => {
+    return this.httpclient.post<LogInResponce>(environment.endPoints.auth.master, {
       email: email,
       password: password,
+      role: role,
     });
   };
 
@@ -34,24 +46,49 @@ export class AuthService {
     );
   };
 
-  adminLoggedIn() {
-    return !!localStorage.getItem('admin');
+
+  masterLoggedIn() {
+    return !!localStorage.getItem('data');
   }
-  employeeLogggedIn() {
-    return !!localStorage.getItem('employee');
+
+  admin(){
+    var isAdmin=false;
+  var data:any= localStorage.getItem('data');
+  if(data){
+    data=JSON.parse(data) as any;
+    if(data.role==1){
+      isAdmin=true;
+    }
   }
+  return isAdmin;
+  }
+  // adminLoggedIn() {
+  //   return !!localStorage.getItem('admin');
+  // }
+  // employeeLogggedIn() {
+  //   return !!localStorage.getItem('employee');
+  // }
 
   getToken() {
     return localStorage.getItem('token');
   }
 
-  adminLogout() {
-    this.routes.navigate(['/']);
-    return localStorage.removeItem('admin');
-  }
-  logout() {
-    this.routes.navigate(['/']);
-    return localStorage.removeItem('employee');
+  //    adminLogout() {
+  //    this.routes.navigate(['/']);
+  //    return localStorage.removeItem('admin');
+  // }
 
+  masterLogout() {
+    this.routes.navigate(['/']);
+    return localStorage.removeItem('data');
   }
+
+  // supervisorLogout() {
+  //   this.routes.navigate(['/']);
+  //   return localStorage.removeItem('supervisor');
+  // }
+  // logout() {
+  //   this.routes.navigate(['/']);
+  //   return localStorage.removeItem('employee');
+  // }
 }

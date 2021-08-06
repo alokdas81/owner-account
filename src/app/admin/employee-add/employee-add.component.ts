@@ -11,7 +11,6 @@ import {
 import { Location } from '@angular/common';
 import { EmployeeForAdd } from 'src/app/employeedetails';
 
-
 interface supers {
   value: string;
   viewValue: string;
@@ -28,6 +27,7 @@ interface role {
   styleUrls: ['./employee-add.component.css'],
 })
 export class EmployeeAddComponent implements OnInit {
+  public showPassword: boolean | undefined;
   [x: string]: any;
 
   public employeeForm!: FormGroup;
@@ -38,7 +38,7 @@ export class EmployeeAddComponent implements OnInit {
     private location: Location,
     private repository: RepositoryService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.employeeForm = new FormGroup({
@@ -52,16 +52,14 @@ export class EmployeeAddComponent implements OnInit {
       ]),
       email: new FormControl('', [
         Validators.required,
+        Validators.email,
         Validators.maxLength(100),
       ]),
       phone: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
       ]),
-      role: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(1),
-      ]),
+      role: new FormControl('', [Validators.required, Validators.maxLength(1)]),
       password: new FormControl('', [
         Validators.required,
         Validators.maxLength(100),
@@ -155,5 +153,4 @@ export class EmployeeAddComponent implements OnInit {
     { value: 1, viewValue: 'Admin' },
     { value: 2, viewValue: 'Employee' },
   ];
-
 }

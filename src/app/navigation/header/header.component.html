@@ -10,23 +10,20 @@
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
-                <a *ngIf="_authService.adminLoggedIn()" routerLink="/admin/admin">Employee List</a>
+                <a *ngIf="_authService.masterLoggedIn() && _authService.admin()" routerLink="/admin/admin">Employee List</a>
             </li>
             <li>
-                <a *ngIf="_authService.adminLoggedIn()" routerLink="/admin/dashboard">Dashboard</a>
+                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.masterLoggedIn() " routerLink="/signin" routerLinkActive="active">Sign In</a>
             </li>
             <li>
-                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.adminLoggedIn() && !_authService.employeeLogggedIn() " routerLink="/signin" routerLinkActive="active">Admin Sign In</a>
+                <a mat-button mat-raised-button color="accent" *ngIf="_authService.masterLoggedIn() " (click)="_authService.masterLogout()" >Sign Out</a>
             </li>
-            <li>
-                <a mat-button mat-raised-button color="accent" *ngIf="_authService.adminLoggedIn() " (click)="_authService.adminLogout()" >Sign Out</a>
-            </li>
-            <li>
-                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.employeeLogggedIn() && !_authService.adminLoggedIn()" routerLink="/employee/login"  routerLinkActive="active" >Log In</a>
+            <!--- <li>
+                <a mat-button mat-raised-button color="accent" *ngIf="!_authService.employeeLogggedIn()" routerLink="/employee/login"  routerLinkActive="active" >Log In</a>
             </li>
             <li>
                 <a mat-button mat-raised-button color="accent" *ngIf="_authService.employeeLogggedIn() " (click)="_authService.logout()" >Log Out</a>
-            </li>
+            </li> -->
         </ul>
     </div>
   </mat-toolbar>

@@ -40,3 +40,8 @@ body {
 }
 
 
+@media(max-width: 959px){
+  mat-toolbar{
+      border-radius: 0px;
+  }
+}

@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/auth.service';
 export class HeaderComponent implements OnInit {
 
 
+
   @Output() public sidenavToggle = new EventEmitter();
 
   constructor(public _authService:AuthService) {}
@@ -18,5 +19,10 @@ export class HeaderComponent implements OnInit {
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
   };
-  
+
+  isadmin(){
+
+  }
+
+
 }

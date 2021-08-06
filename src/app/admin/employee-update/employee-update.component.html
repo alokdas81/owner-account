@@ -66,6 +66,30 @@
 
         <mat-form-field>
           <input
+            id="mysecretpassword"
+            type="password"
+            formControlName="password"
+            placeholder="Employee's Password"
+            matInput
+            showHideInput
+          />
+          <i
+            matSuffix
+            class="material-icons"
+            showHideTrigger="mysecretpassword"
+            [showHideStatus]="{ materialIcon: true, id: 'mysecretpassword' }"
+          ></i>
+          <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('password', 'required')"
+            >password is required</mat-error
+          >
+          <mat-error *ngIf="hasError('password', 'maxlength')"
+            >You have more than 100 characters</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
             matInput
             type="text"
             placeholder="Employee's phone no"
@@ -83,7 +107,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Employee Status</mat-label>
-          <mat-select formControlName="status"  >
+          <mat-select formControlName="status" [(value)]="employeeForm.value.status" >
             <mat-option *ngFor="let status of employee_status" [value]="status.value">
               {{status.viewValue}}
             </mat-option>
@@ -98,7 +122,7 @@
             formControlName="sup_name"
             [compareWith]="compareItems"
           >
-            <mat-option>None</mat-option>
+             <mat-option value="N/A">None</mat-option>
             <mat-option *ngFor="let s of super" [value]="s.value">
               {{ s.viewValue }}
             </mat-option>

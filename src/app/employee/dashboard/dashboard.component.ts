@@ -1,7 +1,7 @@
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from 'src/app/service/repo.service';
-import { Colleague } from './../../employeedetails';
+import {employee_under} from './../../employeedetails';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons"
@@ -31,9 +31,9 @@ export class DashboardComponent implements OnInit {
     'kpi_details',
   ];
 
-  public colleague = new MatTableDataSource<Colleague>();
+  public colleague = new MatTableDataSource<employee_under>();
 
-   _name=JSON.parse(localStorage.getItem("employee") as string);
+   _name=JSON.parse(localStorage.getItem("data") as string);
 
   emp_fname=this._name.f_name;
   emp_lname=this._name.l_name;
@@ -47,33 +47,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllEmployees();
-  }
 
-  public getAllEmployees = () => {
-    this.repoService.getColleagues('colleagues/').subscribe((res) => {
-      console.warn(res);
-      this.colleague.data = res as Colleague[];
-    });
-  };
-
-  redirectToKpi(emp_id: string) {
-    let url: string = `/employee/kpi/${emp_id}`;
-    this.router.navigate([url]);
-  }
-
-
-  public redirectToKpiDetails=(emp_id:string)=>{
-    let kpiurl: string = `/employee/kpi_details/${emp_id}`;
-    this.router.navigate([kpiurl]);
-  }
-  applyFilter(event: any) {
-    const filterQuery = event.target.value.trim().toLowerCase();
-    this.colleague.filter = filterQuery;
-  }
-
-  ngAfterViewInit(): void {
-    this.colleague.paginator = this.paginator;
   }
 
 

@@ -12,7 +12,8 @@ import { EmployeeUpdateComponent } from './employee-update/employee-update.compo
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 import { EmployeeKpiDetailsComponent } from './employee-kpi-details/employee-kpi-details.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import {FontAwesomeModule}from '@fortawesome/angular-fontawesome'
+import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 
 export interface Admin {
@@ -43,7 +44,8 @@ export interface Admin {
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ShowHidePasswordModule
 
   ],
   exports: [EmployeeListComponent, EmployeeDetailsComponent],
