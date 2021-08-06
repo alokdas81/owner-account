@@ -1,10 +1,12 @@
-const baseUrl = 'http://projectsshowcase.com:9000';
+
+const baseUrl = 'http://localhost:3000';
 
 export const environment = {
-  production: true,
+  production: false,
   urlAddress: baseUrl,
   endPoints: {
-    auth: { signIn: `${baseUrl}/signIn` },
+    auth:{master:`${baseUrl}/masterlogin`},
+    Supervisor:{suplogin:`${baseUrl}/suplogin`},
     employee: {
       createEmployee: `${baseUrl}/path/to/create`,
       loginEmoployee: `${baseUrl}/login`,
