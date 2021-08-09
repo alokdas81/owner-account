@@ -64,21 +64,21 @@ export class SigninComponent implements OnInit {
             console.log(res);
             if (res.data.role == role) {
               if (role == 1) {
-                this.toastr.success('You have successfully login!', 'Welcome');
                 localStorage.setItem('data', JSON.stringify(res.data));
+                this.toastr.success('You have successfully login!', `Welcome ${res.data.f_name} To Admin Dashboard`);
                 localStorage.setItem('token', res.token);
                 this.routes.navigate(['admin/dashboard']);
               } else if (role == 0) {
-                this.toastr.success('You have successfully login!', 'Welcome');
                 localStorage.setItem('data', JSON.stringify(res.data));
+                this.toastr.success('You have successfully login!', `Welcome ${res.data.f_name} To Supervisor Dashboard`);
                 localStorage.setItem('token', res.token);
                 this.routes.navigate([
                   `/supervisor/dashboard/${res.data.emp_id}`,
                 ]);
               } else if (role == 2) {
-                this.toastr.success('You have successfully login!', 'Welcome');
                 localStorage.setItem('data', JSON.stringify(res.data));
-                console.log(res);
+                this.toastr.success('You have successfully login!', `Welcome ${res.data.f_name} To Employee Dashboard`);
+                //console.log(res);
                 localStorage.setItem('token', res.token);
                 this.routes.navigate([
                   `/employee/dashboard/${res.data.emp_id}`,
@@ -90,7 +90,7 @@ export class SigninComponent implements OnInit {
           },
           (err) => {
             this.toastr.error('Please cheack email and password!', 'Opps!');
-            console.log(err);
+           // console.log(err);
             this.routes.navigate(['/signin']);
           }
         );

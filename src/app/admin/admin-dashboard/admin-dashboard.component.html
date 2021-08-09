@@ -1,23 +1,30 @@
-
 <div class="card">
+
+
+
   <div class="card-body text-center">
-    <img width="150" height="150"  name="image" class="rounded-circle omg-thumbnail border-danger" src="{{admin_image}}" alt="">
+    <img
+      width="150"
+      height="150"
+      name="image"
+      class="rounded-circle omg-thumbnail border-danger"
+      src="{{ admin_image }}"
+      alt=""
+    />
     <div class="card-title text-primary">
       <h1>
-        <span class="px-2">{{admin_fname}}</span>
-        <span class="px-2">{{admin_lname}}</span>
+        <span class="px-2">{{ admin_fname }}</span>
+        <span class="px-2">{{ admin_lname }}</span>
       </h1>
-
     </div>
     <div class="card-text">
       <fa-icon [icon]="faEnvelope"></fa-icon>
-      {{admin_email}}
+      {{ admin_email }}
     </div>
     <div class="card-text">
       <fa-icon [icon]="faPhone"></fa-icon>
-      {{admin_phone}}
+      {{ admin_phone }}
     </div>
   </div>
   <app-employee-list></app-employee-list>
 </div>
-
