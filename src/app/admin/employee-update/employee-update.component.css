@@ -2,3 +2,6 @@ mat-card-title{
     text-align: center;
 
 }
+.material-icons:hover{
+cursor: pointer;
+}

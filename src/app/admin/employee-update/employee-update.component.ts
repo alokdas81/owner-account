@@ -11,7 +11,8 @@ interface supers {
   viewValue: string;
 }
 
-interface status {
+
+interface role {
   value: number;
   viewValue: string;
 }
@@ -60,10 +61,7 @@ export class EmployeeUpdateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(20),
       ]),
-      status: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(1),
-      ]),
+      role: new FormControl('', [Validators.required, Validators.maxLength(1)]),
       sup_name: new FormControl('', [
         Validators.required,
         Validators.maxLength(60),
@@ -125,7 +123,7 @@ export class EmployeeUpdateComponent implements OnInit {
         this.employeeForm.patchValue({
           ...this.employee,
           sup_name: this.employee.sup_id,
-          status:this.employee.status
+          role:this.employee.role
 
         });
       },
@@ -156,7 +154,7 @@ export class EmployeeUpdateComponent implements OnInit {
     email: string;
     password: string;
     phone: number;
-    status: number;
+    role: number;
     sup_id: number;
   }) => {
     (this.employee.f_name = employeeFormValue.f_name),
@@ -164,7 +162,7 @@ export class EmployeeUpdateComponent implements OnInit {
       (this.employee.email = employeeFormValue.email),
       (this.employee.password = employeeFormValue.password),
       (this.employee.phone = employeeFormValue.phone),
-      (this.employee.status = employeeFormValue.status),
+      (this.employee.role = employeeFormValue.role),
       (this.employee.sup_id = employeeFormValue.sup_id);
 
     let apiUrl = `update/${this.employee.emp_id}`;
@@ -181,8 +179,9 @@ export class EmployeeUpdateComponent implements OnInit {
 
   super: supers[] = [];
 
-  employee_status: status[] = [
-    { value: 1, viewValue: 'Supervisor' },
-    { value: 0, viewValue: 'Employee' },
+  employee_role: role[] = [
+    { value: 0, viewValue: 'Supervisor' },
+    { value: 1, viewValue: 'Admin' },
+    { value: 2, viewValue: 'Employee' },
   ];
 }

@@ -44,4 +44,10 @@ body {
   mat-toolbar{
       border-radius: 0px;
   }
+
+
 }
+
+.material-icons:hover{
+  cursor: pointer;
+  }

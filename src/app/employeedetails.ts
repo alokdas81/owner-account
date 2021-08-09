@@ -10,6 +10,7 @@ export interface Employee {
   email: string;
   password: string;
   sup_id: number;
+  role: number;
   status: number;
 
   details?: Detail[];

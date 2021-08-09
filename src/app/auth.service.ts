@@ -79,7 +79,7 @@ export class AuthService {
   // }
 
   masterLogout() {
-    this.routes.navigate(['/']);
+    this.routes.navigate(['/signin']);
     return localStorage.removeItem('data');
   }
 

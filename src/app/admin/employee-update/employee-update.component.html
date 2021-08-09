@@ -106,10 +106,10 @@
 
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Employee Status</mat-label>
-          <mat-select formControlName="status" [(value)]="employeeForm.value.status" >
-            <mat-option *ngFor="let status of employee_status" [value]="status.value">
-              {{status.viewValue}}
+          <mat-label>Employee Role</mat-label>
+          <mat-select formControlName="role" [(value)]="employeeForm.value.status" >
+            <mat-option *ngFor="let role of employee_role" [value]="role.value">
+              {{role.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
