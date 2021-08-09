@@ -10,11 +10,14 @@ export interface Employee {
   email: string;
   password: string;
   sup_id: number;
+  supervisor_name:string;
   role: number;
   status: number;
 
   details?: Detail[];
 }
+
+
 
 export interface EmployeeForAdd {
   f_name: string;
