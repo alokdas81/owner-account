@@ -66,7 +66,6 @@ export class EmployeeAddComponent implements OnInit {
         Validators.minLength(6),
       ]),
       sup_name: new FormControl('', [
-        Validators.required,
         Validators.maxLength(60),
       ]),
     });
