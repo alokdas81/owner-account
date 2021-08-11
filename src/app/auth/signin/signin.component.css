@@ -22,3 +22,6 @@ main-wrapper{
   width: 100%;
   justify-content: flex-end;
 }
+.body{
+  overflow: hidden;
+}
