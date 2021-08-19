@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
 
 
   @Output() public sidenavToggle = new EventEmitter();
@@ -19,10 +18,6 @@ export class HeaderComponent implements OnInit {
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
   };
-
-  isadmin(){
-
-  }
 
 
 }

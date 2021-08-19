@@ -24,6 +24,7 @@ import { EmployeeModule } from './employee/employee.module';
 import { ToastrModule } from 'ngx-toastr';
 import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { FooterComponent } from './navigation/footer/footer.component';
 
 
 
@@ -37,6 +38,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
     HeaderComponent,
     SidenavListComponent,
     NotFoundComponent,
+    FooterComponent,
 
 
 

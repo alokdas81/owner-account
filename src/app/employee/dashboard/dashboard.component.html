@@ -1,59 +1,57 @@
 <div class="card">
-  <div class="card-body text-center">
-    <img
-      width="150"
-      height="150"
-      class="rounded-circle omg-thumbnail border-danger"
-      src="../../../assets/background.jpg"
-      alt=""
-    />
-    <div class="card-title text-primary">
-      <h1>
-        <span class="px-2">{{ emp_fname }}</span>
-        <span class="px-2">{{ emp_lname }}</span>
-      </h1>
-    </div>
-    <div class="card-text">
-      <fa-icon [icon]="faEnvelope"></fa-icon>
-      {{ emp_email }}
-    </div>
-    <div class="card-text">
-      <fa-icon [icon]="faPhone"></fa-icon>
-      {{ emp_phone }}
-    </div>
-  </div>
-  <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
-      <mat-card-title style="text-align: center">Details</mat-card-title>
-      <br>
-      <br>
-      <mat-card-content>
-        <div fxLayout="column wrap" fxLayoutGap="40px">
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>First name:</strong></div>
-            <div fxFlex>{{emp_fname}}</div>
+    <div class="card-body text-center">
+      <img
+        width="150"
+        height="150"
+        class="rounded-circle omg-thumbnail border-danger"
+        src="../../../assets/background.jpg"
+        alt=""
+      />
+      <div class="card-title text-primary">
+        <h1>
+          <span class="px-2">{{ emp_fname }}</span>
+          <span class="px-2">{{ emp_lname }}</span>
+        </h1>
+      </div>
+      <div class="card-text">
+        <fa-icon [icon]="faEnvelope"></fa-icon>
+        {{ emp_email }}
+      </div>
+      <div class="card-text">
+        <fa-icon [icon]="faPhone"></fa-icon>
+        {{ emp_phone }}
+      </div>
+    </div>
+    <section fxLayout="row wrap" fxLayoutAlign="center center">
+      <div class="element">
+        <mat-card-content
+          fxLayout="row"
+          fxLayoutGap="30px"
+          fxLayoutAlign="space-between center"
+        >
+          <div class="example-button-row">
+            <div class="example-flex-container">
+              <button
+                mat-mini-fab
+                color="primary"
+                (click)="redirectToAddKpi(emp_empId)"
+                aria-label="Example icon button with a home icon"
+              >
+                <mat-icon>assignment_ind</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="accent"
+                (click)="redirectToDetails(emp_empId)"
+                aria-label="Example icon button with a menu icon"
+              >
+                <mat-icon>menu</mat-icon>
+              </button>
+            </div>
           </div>
-
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong> Last name:</strong></div>
-            <div fxFlex>{{emp_lname}}</div>
-          </div>
-
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's Phone no:</strong></div>
-            <div fxFlex>{{emp_phone}}</div>
-          </div>
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's email:</strong></div>
-            <div fxFlex>{{emp_email }}</div>
-          </div>
-
-
-        </div>
-      </mat-card-content>
-
-    </mat-card>
-</section>
+        </mat-card-content>
+      </div>
+    </section>
+  </mat-card>
 </div>
-
-

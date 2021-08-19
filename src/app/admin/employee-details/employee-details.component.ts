@@ -27,12 +27,8 @@ private getEmployeeById = () => {
   this.repository.getData(employeeByIdUrl)
     .subscribe(res => {
       this.employee = res as Employee;
-      this.showDetails.patchValue({
-        ...this.employee,
-        sup_name: this.employee.sup_id,
-        status:this.employee.status
 
-      });
+
     },
     (error) => {
       //this.errorHandler.handleError(error);

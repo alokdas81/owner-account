@@ -17,7 +17,7 @@ export class EmployeeKpiComponent implements OnInit {
   constructor(
     private location: Location,
     private repository: RepositoryService,
-    private activateRoute:ActivatedRoute
+    private activateRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +65,7 @@ export class EmployeeKpiComponent implements OnInit {
     });
   }
 
-  public addKpi =() => {
+  public addKpi = () => {
     if (this.employeeForm.valid) {
       this.executeKpiAdd(this.employeeForm.value);
     }
@@ -84,7 +84,7 @@ export class EmployeeKpiComponent implements OnInit {
     teamPlayer: number;
     dependibility: number;
   }) => {
-    const _employee= JSON.parse(localStorage.getItem("employee") as string);
+    const _employee = JSON.parse(localStorage.getItem('data') as string);
     let employee: Kpi = {
       sup_id: _employee.sup_id,
       feedback_emp_id: _employee.emp_id,
@@ -99,13 +99,12 @@ export class EmployeeKpiComponent implements OnInit {
       teamPlayer: employeeFormValue.teamPlayer,
       dependibility: employeeFormValue.dependibility,
     };
-    
-    console.log(employee)
-    const empId=this.activateRoute.snapshot.params.id;
+
+    console.log(employee);
+    const empId = this.activateRoute.snapshot.params.id;
     let apiUrl = `add/${empId}`;
     this.repository.addKpi(apiUrl, employee).subscribe(
       (res) => {
-        
         console.log(res);
         this.location.back();
       },
@@ -123,6 +122,8 @@ export class EmployeeKpiComponent implements OnInit {
 
     return value;
   }
+
+
   onCancel() {
     this.location.back();
   }

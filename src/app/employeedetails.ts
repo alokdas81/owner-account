@@ -1,3 +1,5 @@
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+
 export interface Detail {
   status: string;
   roll: number;
@@ -10,13 +12,12 @@ export interface Employee {
   email: string;
   password: string;
   sup_id: number;
-  supervisor_name:string;
+  supervisor_name: string;
   role: number;
   status: number;
 
   details?: Detail[];
 }
-
 
 
 export interface EmployeeForAdd {
@@ -43,7 +44,6 @@ export interface EmpResponce {
   token: string;
 }
 
-
 export interface LogInResponce {
   email: string;
   password: string;
@@ -65,6 +65,18 @@ export interface Kpi {
   teamPlayer: number;
   dependibility: number;
 }
+export interface SupGivenKpi extends Kpi{
+  Feedback_given_employee_name: string
+}
+
+export interface EmpGivenKpi extends Kpi{
+  feedback_given_emp_name: string
+}
+
+export interface Addkpi extends Kpi {
+  emp_id: string;
+}
+
 export interface employee_under {
   emp_id: string;
   f_name: string;
@@ -76,15 +88,21 @@ export interface employee_under {
   roll: number;
 }
 
+export interface Self extends employee_under{
+
+}
 export interface Colleague {
   emp_id: string;
   f_name: string;
   l_name: string;
   email: string;
   phone: number;
+  password:string;
   status: string;
-  sup_id: number;
-  roll: number;
+  sup_id: string;
+  role: number;
 }
 
-export interface Supervisor extends Colleague {}
+export interface Supervisor extends Colleague {
+  supervisor_name:string
+}

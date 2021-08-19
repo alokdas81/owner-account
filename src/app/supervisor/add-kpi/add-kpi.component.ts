@@ -87,7 +87,7 @@ export class AddKpiComponent implements OnInit {
   }) => {
     const _employee= JSON.parse(localStorage.getItem("data") as string);
     let employee: Kpi = {
-      sup_id: _employee.sup_id,
+      sup_id: _employee.emp_id,
       feedback_emp_id: _employee.emp_id,
       availability: employeeFormValue.availability,
       ontime: employeeFormValue.ontime,

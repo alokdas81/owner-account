@@ -14,6 +14,8 @@ import { EmployeeKpiDetailsComponent } from './employee-kpi-details/employee-kpi
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { SupGivenKpiComponent } from './sup-given-kpi/sup-given-kpi.component';
+import { EmpGivenKpiComponent } from './emp-given-kpi/emp-given-kpi.component';
 
 
 export interface Admin {
@@ -37,6 +39,8 @@ export interface Admin {
     EmployeeDeleteComponent,
     EmployeeKpiDetailsComponent,
     AdminDashboardComponent,
+    SupGivenKpiComponent,
+    EmpGivenKpiComponent,
   ],
   imports: [
     CommonModule,

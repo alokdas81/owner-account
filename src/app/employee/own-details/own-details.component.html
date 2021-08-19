@@ -1,41 +1,44 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
-      <mat-card-title>Details for the clicked Employee</mat-card-title>
+      <mat-card-title style="text-align: center;">Details</mat-card-title>
       <br>
       <br>
       <mat-card-content>
         <div fxLayout="column wrap" fxLayoutGap="40px">
           <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's First name:</strong></div>
+            <div fxFlex><strong> First name:</strong></div>
             <div fxFlex>{{employee?.f_name}}</div>
           </div>
 
           <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's Last name:</strong></div>
+            <div fxFlex><strong> Last name:</strong></div>
             <div fxFlex>{{employee?.l_name}}</div>
           </div>
 
           <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's Phone no:</strong></div>
+            <div fxFlex><strong> Phone no:</strong></div>
             <div fxFlex>{{employee?.phone}}</div>
           </div>
           <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's email:</strong></div>
+            <div fxFlex><strong> Email:</strong></div>
             <div fxFlex>{{employee?.email}}</div>
           </div>
 
           <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>Employee's supervisor Name:</strong></div>
+            <div fxFlex><strong> Supervisor Name:</strong></div>
             <div fxFlex>{{employee?.supervisor_name || 'N/A'}}</div>
           </div>
 
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Employee's Role:</strong></div>
+            <div fxFlex>{{employee?.role}}</div>
+          </div>
 
-        </div>
-
-
-        <mat-card-actions>
+        <mat-card-actions fxLayoutAlign="center center">
               <button type="button" mat-raised-button color="warn" (click)="onBack()">Go Back</button>
         </mat-card-actions>
+
+        </div>
       </mat-card-content>
 
     </mat-card>

@@ -1,0 +1,63 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title>Details of Kpi for the clicked Employee</mat-card-title>
+         <br>
+
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="100px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Name Of The Supervisor:</strong></div>
+              <div fxFlex>{{employee?.Feedback_given_employee_name || 'N/A'}}</div>
+            </div>
+
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>How much you are available for the client regardless of time and day?:</strong></div>
+              <div fxFlex>{{employee?.availability || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>How much you are capable of submitting job on time? :</strong></div>
+              <div fxFlex>{{employee?.ontime || 'N/A'}}</div>
+            </div>
+
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>How much punctual you are?:</strong></div>
+              <div fxFlex>{{employee?.punctuality || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>How much regular you are?:</strong></div>
+              <div fxFlex>{{employee?.regularity || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>How efficiently you deal with unexpected events?:</strong></div>
+              <div fxFlex>{{employee?.timetorepair || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> How much capable you are for solving critical problem?:</strong></div>
+              <div fxFlex>{{employee?.criticalproblemsolving || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>How much efficiently you can andle your client?:</strong></div>
+              <div fxFlex>{{employee?.clienthandling || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> How much innovative and adative to new changes you are?:</strong></div>
+              <div fxFlex>{{employee?. innovative || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> How good team player you are?:</strong></div>
+              <div fxFlex>{{employee?.teamPlayer || 'N/A'}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> How much management can depends upon you for company's growth?:</strong></div>
+              <div fxFlex>{{employee?.dependibility || 'N/A'}}</div>
+            </div>
+          </div>
+
+
+          <mat-card-actions style="text-align: center;">
+                <button type="button" mat-raised-button color="warn" (click)="onBack()">Go Back</button>
+          </mat-card-actions>
+        </mat-card-content>
+
+      </mat-card>
+  </section>

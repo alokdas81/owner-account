@@ -26,6 +26,10 @@ export class RepositoryService {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
 
+  public getownDetailsById = (route: string) => {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+  }
+
   public create = (route: string, body: any) => {
     return this.http.post(this.createCompleteRoute(route, environment.urlAddress), body, this.generateHeaders());
   }
@@ -43,6 +47,14 @@ export class RepositoryService {
   }
 
   public getEmpKpiById = (route: string) => {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+  }
+
+  public supGivenKpiById = (route: string) => {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+  }
+
+  public empGivenKpiById = (route: string) => {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
 

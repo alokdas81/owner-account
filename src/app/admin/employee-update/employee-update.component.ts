@@ -4,7 +4,7 @@ import { RepositoryService } from 'src/app/service/repo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee, EmployeeForAdd } from 'src/app/employeedetails';
 import { Location } from '@angular/common';
-import { Supervisor } from './../../employeedetails';
+import { Supervisor, Colleague } from './../../employeedetails';
 
 interface supers {
   value: string;
@@ -57,28 +57,14 @@ export class EmployeeUpdateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(15),
       ]),
-      sup_id: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(20),
-      ]),
       role: new FormControl('', [Validators.required, Validators.maxLength(1)]),
-      sup_name: new FormControl('', [
+      sup_id: new FormControl('', [
         Validators.required,
         Validators.maxLength(60),
       ]),
     });
     this.getSupervisor();
     this.getEmployeeById();
-
-    /* let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
-    let employeeByIdUrl: string = `details/${employeeId}`;
-    this.repository.getEmpById(employeeByIdUrl)
-    .subscribe(res => {
-      this.employee = res as Employee;
-
-      console.log(res);
-
-    })*/
   }
 
   private getSupervisor = () => {
@@ -119,13 +105,15 @@ export class EmployeeUpdateComponent implements OnInit {
 
     this.repository.getData(employeeByIdUrl).subscribe(
       (res) => {
+        console.log("res",res)
         this.employee = res as Employee;
         this.employeeForm.patchValue({
           ...this.employee,
-          sup_name: this.employee.sup_id,
+          sup_id: this.employee.sup_id.toString(),
           role:this.employee.role
 
         });
+        console.log('this.employeeForm',this.employeeForm.value)
       },
       (_error) => {
         //error massage
@@ -168,6 +156,7 @@ export class EmployeeUpdateComponent implements OnInit {
     let apiUrl = `update/${this.employee.emp_id}`;
     this.repository.update(apiUrl, this.employee).subscribe(
       (res) => {
+        console.log(res);
         this.router.navigate(['admin/dashboard']);
       },
       (error) => {
