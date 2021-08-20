@@ -63,7 +63,6 @@ flag=true;
 
   _get=JSON.parse(localStorage.getItem("element") as string);
 
- feedback_emp_id=this._get.feedback_emp_id
 
 
  isSubmited(element:any){
