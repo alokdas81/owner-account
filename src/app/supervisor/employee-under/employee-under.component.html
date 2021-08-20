@@ -35,6 +35,7 @@
       <button
         mat-icon-button
         color="primary"
+        [disabled]="isSubmited(element)"
         (click)="redirectToKpi(element.emp_id)"
       >
         <mat-icon class="mat-18">reorder</mat-icon>

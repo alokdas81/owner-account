@@ -86,7 +86,10 @@ export interface employee_under {
   status: string;
   sup_id: number;
   roll: number;
+  feedback_emp_id:number;
+
 }
+
 
 export interface Self extends employee_under{
 
@@ -105,4 +108,8 @@ export interface Colleague {
 
 export interface Supervisor extends Colleague {
   supervisor_name:string
+}
+
+export interface Avg extends Colleague{
+  average:number
 }

@@ -1,0 +1,21 @@
+
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title>Details of Kpi for the clicked Employee</mat-card-title>
+         <br>
+
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="100px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Average KPI of Employee:</strong></div>
+              <div fxFlex>{{employee?.average || 'N/A'}}</div>
+            </div>
+          </div>
+
+          <mat-card-actions style="text-align: center;">
+                <button type="button" mat-raised-button color="warn" (click)="onBack()">Go Back</button>
+          </mat-card-actions>
+        </mat-card-content>
+
+    </mat-card>
+</section>

@@ -1,3 +1,4 @@
+import { AverageKpiComponent } from './../average-kpi/average-kpi.component';
 import { SupGivenKpiComponent } from './../sup-given-kpi/sup-given-kpi.component';
 import { AdminDashboardComponent } from './../admin-dashboard/admin-dashboard.component';
 import { EmployeeDeleteComponent } from './../employee-delete/employee-delete.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'kpi_details/:emp_id',canActivate:[AuthGuard], component: EmployeeKpiDetailsComponent },
   { path: 'sup_given_kpi_details/:emp_id',canActivate:[AuthGuard], component: SupGivenKpiComponent },
   { path: 'emp_given_kpi_details/:emp_id',canActivate:[AuthGuard], component:EmpGivenKpiComponent},
+  { path: 'avgKpi/:emp_id',canActivate:[AuthGuard], component:AverageKpiComponent},
   { path: 'delete/:emp_id',canActivate:[AuthGuard], component: EmployeeDeleteComponent },
   { path: 'add',canActivate:[AuthGuard], component: EmployeeAddComponent },
   {

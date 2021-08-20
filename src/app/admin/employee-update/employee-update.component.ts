@@ -94,6 +94,7 @@ export class EmployeeUpdateComponent implements OnInit {
         value: item.emp_id.toString(),
       });
     });
+    console.log(this.super);
   }
   public compareItems(i1: any, i2: any) {
     return i1 && i2 && i1.id === i2.id;
@@ -109,7 +110,7 @@ export class EmployeeUpdateComponent implements OnInit {
         this.employee = res as Employee;
         this.employeeForm.patchValue({
           ...this.employee,
-          sup_id: this.employee.sup_id.toString(),
+          sup_id: this.employee.sup_id,
           role:this.employee.role
 
         });

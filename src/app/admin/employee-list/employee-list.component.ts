@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class EmployeeListComponent implements OnInit {
 
-  public displayedColumns = ['status','emp_id', 'f_name', 'l_name','email','phone','sup_id', 'details','Superkpidetails','Employeekpidetails', 'update', 'delete'
+  public displayedColumns = ['status','emp_id', 'f_name', 'l_name','email','phone','sup_id', 'details','Superkpidetails','Employeekpidetails','EmployeeAvgkpidetails', 'update', 'delete'
 ];
   public dataSource = new MatTableDataSource<Admin>();
 
@@ -50,6 +50,12 @@ export class EmployeeListComponent implements OnInit {
 
   public redirectToDetails = (emp_id: string) => {
     let url: string = `/admin/details/${emp_id}`;
+    this.router.navigate([url]);
+
+  }
+
+  public redirectToAvgKpiDetails = (emp_id: string) => {
+    let url: string = `/admin/avgKpi/${emp_id}`;
     this.router.navigate([url]);
 
   }

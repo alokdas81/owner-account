@@ -61,18 +61,27 @@
     </ng-container>
 
     <ng-container matColumnDef="Superkpidetails">
-      <th mat-header-cell *matHeaderCellDef>Supervisor Given Kpi Details </th>
+      <th mat-header-cell style="text-align: center;" *matHeaderCellDef>Supervisor Given <br>Kpi Details </th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button fxLayoutAlign="center center" color="primary" (click)="redirectToKpiDetails(element.emp_id)">
-            <mat-icon class="mat-18">reorder</mat-icon>
+            <mat-icon style="text-align: center;" class="mat-18">reorder</mat-icon>
         </button>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Employeekpidetails">
-      <th mat-header-cell *matHeaderCellDef>Employee Given Kpi Details </th>
+      <th mat-header-cell *matHeaderCellDef>Employee Given <br> Kpi Details </th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="primary" (click)="redirectToEmployeeKpiDetails(element.emp_id)">
+            <mat-icon class="mat-18">reorder</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EmployeeAvgkpidetails">
+      <th mat-header-cell *matHeaderCellDef>Average Kpi </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="redirectToAvgKpiDetails(element.emp_id)">
             <mat-icon class="mat-18">reorder</mat-icon>
         </button>
       </td>

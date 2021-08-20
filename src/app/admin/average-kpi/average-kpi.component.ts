@@ -1,18 +1,19 @@
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
-import { Kpi } from './../../employeedetails';
+import { Avg } from './../../employeedetails';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from 'src/app/service/repo.service';
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-employee-kpi-details',
-  templateUrl: './employee-kpi-details.component.html',
-  styleUrls: ['./employee-kpi-details.component.css']
-})
-export class EmployeeKpiDetailsComponent implements OnInit {
 
-  public employee: Kpi | undefined;
+@Component({
+  selector: 'app-average-kpi',
+  templateUrl: './average-kpi.component.html',
+  styleUrls: ['./average-kpi.component.css']
+})
+export class AverageKpiComponent implements OnInit {
+
+  public employee: Avg | undefined;
   public showKpiDetails: any;
 
   constructor(private repository: RepositoryService, private router: Router,
@@ -22,14 +23,12 @@ export class EmployeeKpiDetailsComponent implements OnInit {
   this.getKpiById();
   }
 
-
 private getKpiById = () => {
   const employeeId: string = this.activeRoute.snapshot.params['emp_id'];
-  const employeeByIdUrl: string = `kpi_details/${employeeId}`;
-  this.repository.getEmpById(employeeByIdUrl)
+  const employeeByIdUrl: string = `avgKpi/${employeeId}`;
+  this.repository.avgKpi(employeeByIdUrl)
     .subscribe(res => {
-      this.employee = res as Kpi;
-      console.log(res);
+      this.employee = res as Avg;
     },
     (error) => {
     this.toastr.error("Invalid employee!","Check again!");
@@ -38,5 +37,7 @@ private getKpiById = () => {
     onBack(){
       this.location.back();
     }
+
+
 
 }

@@ -54,6 +54,10 @@ export class RepositoryService {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
 
+  public avgKpi = (route: string) => {
+    return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
+  }
+
   public empGivenKpiById = (route: string) => {
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }

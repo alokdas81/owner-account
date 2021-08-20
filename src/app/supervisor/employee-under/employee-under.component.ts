@@ -5,6 +5,7 @@ import {employee_under} from './../../employeedetails';
 import { MatTableDataSource } from '@angular/material/table';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons"
 import { MatPaginator } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-under',
@@ -13,6 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class EmployeeUnderComponent implements OnInit {
 
+flag=true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -31,34 +33,57 @@ export class EmployeeUnderComponent implements OnInit {
   ];
   public employee_under = new MatTableDataSource<employee_under>();
 
+  _name=JSON.parse(localStorage.getItem("data") as string);
+
+  emp_id=this._name.emp_id;
+  emp_fname=this._name.f_name;
+  emp_lname=this._name.l_name;
+  emp_email=this._name.email;
+  emp_phone=this._name.phone;
+  emp_sup_id=this._name.sup_id
 
   constructor(
     private repoService: RepositoryService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.getAllEmployees();
+    this.getAllEmployees()
   }
 
   public getAllEmployees = () => {
     this.repoService.getEmployeeUnder('employees/').subscribe((res) => {
-      this.employee_under.data = res as employee_under[];
-      console.warn(res);
+      this.employee_under.data = res  as employee_under[];
+      localStorage.setItem('element', JSON.stringify(res));
 
     });
   };
 
+  _get=JSON.parse(localStorage.getItem("element") as string);
+
+ feedback_emp_id=this._get.feedback_emp_id
+
+
+ isSubmited(element:any){
+  if(element.feedback_emp_id===this.emp_id){
+    return true;
+  }
+  return false;
+ }
+
   redirectToKpi(emp_id: string) {
-    let url: string = `/supervisor/kpi/${emp_id}`;
-    this.router.navigate([url]);
+      let url: string = `/supervisor/kpi/${emp_id}`;
+      this.router.navigate([url]);
+
   }
 
 
+
   public redirectToKpiDetails=(emp_id:string)=>{
-    let kpiurl: string = `/supervisor/kpi_details/${emp_id}`;
-    this.router.navigate([kpiurl]);
+      let kpiurl: string = `/supervisor/kpi_details/${emp_id}`;
+      this.router.navigate([kpiurl]);
   }
   applyFilter(event: any) {
     const filterQuery = event.target.value.trim().toLowerCase();
