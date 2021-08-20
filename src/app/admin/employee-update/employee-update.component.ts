@@ -59,7 +59,6 @@ export class EmployeeUpdateComponent implements OnInit {
       ]),
       role: new FormControl('', [Validators.required, Validators.maxLength(1)]),
       sup_id: new FormControl('', [
-        Validators.required,
         Validators.maxLength(60),
       ]),
     });
