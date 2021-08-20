@@ -1,7 +1,7 @@
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from 'src/app/service/repo.service';
-import {Self} from './../../employeedetails';
+import {employee_under, Self} from './../../employeedetails';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons"
@@ -13,7 +13,7 @@ import { Addkpi } from './../../employeedetails';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-
+  employee!:any
   Addkpi!: Addkpi;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
   emp_sup=this._name.sup_id;
   emp_role=this._name.role;
 
+
   constructor(
     private repoService: RepositoryService,
     private router: Router,
@@ -50,9 +51,35 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    this.getownDetailsById()
   }
 
+
+  private getownDetailsById = () => {
+    const employeeId: string = this.activatedRoute.snapshot.params['id'];
+    console.log(this.activatedRoute.snapshot);
+    const employeeByIdUrl: string = `employeeOwn/${employeeId}`;
+    this.repoService.employeeGetOwnKpi(employeeByIdUrl).subscribe(
+      (res:any) => {
+        this.employee = res;
+
+
+      },
+      (error) => {
+        //this.errorHandler.handleError(error);
+        //this.errorMessage = this.errorHandler.errorMessage;
+      }
+    );
+  };
+
+
+
+ isSubmited(){
+  if(this.employee[0].feedback_emp_id){
+    return true;
+  }
+  return false;
+ }
 
   public redirectToDetails = (emp_empId: string) => {
     let url: string = `/employee/ownDetails/${emp_empId}`;

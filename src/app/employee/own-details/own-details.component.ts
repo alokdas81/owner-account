@@ -28,6 +28,7 @@ export class OwnDetailsComponent implements OnInit {
 
   private getownDetailsById = () => {
     const employeeId: string = this.activeRoute.snapshot.params['emp_id'];
+    console.log(this.activeRoute.snapshot);
     const employeeByIdUrl: string = `ownDetails/${employeeId}`;
     this.repository.getownDetailsById(employeeByIdUrl).subscribe(
       (res) => {

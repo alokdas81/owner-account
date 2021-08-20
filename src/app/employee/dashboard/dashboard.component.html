@@ -35,6 +35,7 @@
               <button
                 mat-mini-fab
                 color="primary"
+                 [disabled]="isSubmited()"
                 (click)="redirectToAddKpi(emp_empId)"
                 aria-label="Example icon button with a home icon"
               >
