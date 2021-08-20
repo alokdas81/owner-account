@@ -1,5 +1,5 @@
 
-const baseUrl = 'http://projectsshowcase.com:9000';
+const baseUrl = 'http://projectsshowcase.com:9000/api';
 
 
 export const environment = {
