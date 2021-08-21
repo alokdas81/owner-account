@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class EmployeeListComponent implements OnInit {
 
-  public displayedColumns = ['status','emp_id', 'f_name', 'l_name','email','phone','sup_id', 'details','Superkpidetails','Employeekpidetails','EmployeeAvgkpidetails', 'update', 'delete'
+  public displayedColumns = ['status','emp_id', 'f_name', 'l_name','email','phone','sup_id','average', 'details','Superkpidetails','Employeekpidetails','update', 'delete'
 ];
   public dataSource = new MatTableDataSource<Admin>();
 
