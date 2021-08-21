@@ -50,7 +50,6 @@ export class EmployeeUpdateComponent implements OnInit {
         Validators.maxLength(100),
       ]),
       password: new FormControl('', [
-        Validators.required,
         Validators.maxLength(100),
       ]),
       phone: new FormControl('', [
