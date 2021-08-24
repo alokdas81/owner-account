@@ -4,12 +4,17 @@
  <mat-form-field fxFlex="40%">
     <input matInput #box (keyup)="applyFilter($event)" placeholder="Filter">
   </mat-form-field>
-
+ </div>
+      <div fxLayout fxLayoutAlign="center center">
     <div>
-    <a [routerLink]="['/admin/add']" mat-button color="primary">Add Employee</a>
+    <a [routerLink]="['/admin/add']" mat-raised-button color="primary">Add Employee</a>
   </div>
   <br>
-
+  <div class="download">
+    <button type="button" mat-raised-button color="primary" (click)="redirectToDownload()">
+      Download Employee Kpi
+       </button>
+       </div>
 </div>
 
 <table mat-table [dataSource]="dataSource"  matSort>

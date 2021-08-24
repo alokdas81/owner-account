@@ -1,13 +1,14 @@
 <div class="card">
   <div class="card-body text-center">
-    <img
-      width="150"
-      height="150"
-      name="image"
-      class="rounded-circle omg-thumbnail border-danger"
-      src="{{ admin_image }}"
-      alt=""
-    />
+ <label class="hoverable" for="fileInput" style="text-align: center;">
+  <img src="{{url}}">
+  <div class="hover-text">Choose file</div>
+  <div class="background"></div>
+</label>
+    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+    <br>
+    <button type="button" mat-raised-button color="primary" (click)="onSubmit()"> Upload</button>
+    <br>
     <div class="card-title text-primary">
       <h1>
         <span class="px-2">{{ admin_fname }}</span>
@@ -22,6 +23,7 @@
       <fa-icon [icon]="faPhone"></fa-icon>
       {{ admin_phone }}
     </div>
+
   </div>
   <app-employee-list></app-employee-list>
 </div>

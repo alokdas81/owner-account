@@ -1,4 +1,7 @@
+import { RepositoryService } from './../../service/repo.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons";
 
 
@@ -9,6 +12,11 @@ import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-so
 })
 export class AdminDashboardComponent implements OnInit {
 
+  images: any;
+
+
+
+
   faEnvelope=faEnvelope;
   faMapMarkedAlt=faMapMarkedAlt;
   faPhone=faPhone;
@@ -16,18 +24,37 @@ export class AdminDashboardComponent implements OnInit {
 
 
   _name=JSON.parse(localStorage.getItem("data") as string);
-
+ admin_emp_id=this._name.emp_id
   admin_fname=this._name.f_name;
   admin_lname=this._name.l_name;
   admin_email=this._name.email;
   admin_phone=this._name.phone;
   admin_image=this._name.image;
 
-  constructor() { }
+  constructor(private http:HttpClient,private form:FormBuilder, private repoService:RepositoryService) { }
 
 
 
   ngOnInit(): void {
   }
 
+  url=`http://localhost:3000/${this.admin_image}`
+
+  onSelectFile(event: any){
+    if(event.target.files.length>0){
+      const file=event.target.files[0]
+      this.images=file;
+    }
+
+  }
+
+
+  onSubmit(){
+    const formData= new FormData();
+    formData.append('file',this.images);
+    let apiUrl = `upload-image/${this.admin_emp_id}`
+    this.repoService.upload(apiUrl,formData).subscribe((res) => {
+      console.log(res);
+   })
+  }
 }

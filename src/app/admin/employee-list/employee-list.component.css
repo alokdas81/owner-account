@@ -13,3 +13,6 @@ th.mat-header-cell {
   align-items: center;
   display: flex;
 }
+.download{
+  margin-left: 15px;
+}
