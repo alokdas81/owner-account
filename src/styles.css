@@ -28,7 +28,7 @@ body {
 
 
 /* for toast importing */
-@import "~ngx-toastr/toastr";
+/* @import "~ngx-toastr/toastr"; */
 
 /* reset */
 *,
