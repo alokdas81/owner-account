@@ -11,7 +11,6 @@ interface supers {
   viewValue: string;
 }
 
-
 interface role {
   value: number;
   viewValue: string;
@@ -39,27 +38,28 @@ export class EmployeeUpdateComponent implements OnInit {
     this.employeeForm = new FormGroup({
       f_name: new FormControl('', [
         Validators.required,
+        Validators.pattern('^[a-zA-Z]+$'),
         Validators.maxLength(60),
       ]),
       l_name: new FormControl('', [
         Validators.required,
+        Validators.pattern('^[a-zA-Z]+$'),
         Validators.maxLength(60),
       ]),
       email: new FormControl('', [
         Validators.required,
+        Validators.email,
+        Validators.pattern('[a-zA-Z0-9._]+(@gmail.com)$'),
         Validators.maxLength(100),
       ]),
-      password: new FormControl('', [
-        Validators.maxLength(100),
-      ]),
+      password: new FormControl('', [Validators.maxLength(100)]),
       phone: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
       ]),
       role: new FormControl('', [Validators.required, Validators.maxLength(1)]),
-      sup_id: new FormControl('', [
-        Validators.maxLength(60),
-      ]),
+      sup_id: new FormControl('', [Validators.maxLength(60)]),
+      supervisor_name: new FormControl(''),
     });
     this.getSupervisor();
     this.getEmployeeById();
@@ -68,7 +68,6 @@ export class EmployeeUpdateComponent implements OnInit {
   private getSupervisor = () => {
     // let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
     let employeeByIdUrl: string = `supervisor/`;
-
     this.repository.getSupervisors(employeeByIdUrl).subscribe(
       (res) => {
         this.Supervisors = res as Supervisor[];
@@ -86,6 +85,7 @@ export class EmployeeUpdateComponent implements OnInit {
   };
 
   public pushValue() {
+    this.super.unshift({ value: '', viewValue: 'None' });
     this.Supervisors.forEach((item) => {
       this.super.push({
         viewValue: item.f_name,
@@ -94,31 +94,33 @@ export class EmployeeUpdateComponent implements OnInit {
     });
     console.log(this.super);
   }
-  public compareItems(i1: any, i2: any) {
-    return i1 && i2 && i1.id === i2.id;
-  }
 
   private getEmployeeById = () => {
     let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
     let employeeByIdUrl: string = `details/${employeeId}`;
-
     this.repository.getData(employeeByIdUrl).subscribe(
       (res) => {
-        console.log("res",res)
+        console.log('res', res);
         this.employee = res as Employee;
         this.employeeForm.patchValue({
           ...this.employee,
           sup_id: this.employee.sup_id,
-          role:this.employee.role
-
+          role: this.employee.role,
+          supervisor_name: this.employee.supervisor_name,
         });
-        console.log('this.employeeForm',this.employeeForm.value)
+        this.employeeForm.updateValueAndValidity();
+        console.log('this.employeeForm', this.employeeForm.value);
+        console.log(this.employee.supervisor_name);
       },
       (_error) => {
         //error massage
       }
     );
   };
+
+  public compareItems(id1: any, id2: any) {
+    return id1.id === id2.id;
+  }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.employeeForm.controls[controlName].hasError(errorName);
@@ -129,7 +131,7 @@ export class EmployeeUpdateComponent implements OnInit {
   };
 
   public updateemployee = (employeeFormValue: any) => {
-  //  console.log(this.employeeForm.value);
+    //  console.log(this.employeeForm.value);
     if (this.employeeForm.valid) {
       this.executeEmployeeUpdate(employeeFormValue);
     }

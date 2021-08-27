@@ -1,8 +1,10 @@
+
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
+
 
 interface role {
   value: number;
@@ -15,6 +17,7 @@ interface role {
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
+
   Form!: FormGroup;
   loginMode: boolean = true;
 

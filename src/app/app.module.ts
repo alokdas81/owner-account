@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {FontAwesomeModule}from '@fortawesome/angular-fontawesome';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import { FooterComponent } from './navigation/footer/footer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -59,7 +60,8 @@ import { FooterComponent } from './navigation/footer/footer.component';
     // AdminModule,
     EmployeeModule,
     ToastrModule.forRoot(),
-    ShowHidePasswordModule
+    ShowHidePasswordModule,
+    NgbModule
 
 
   ],

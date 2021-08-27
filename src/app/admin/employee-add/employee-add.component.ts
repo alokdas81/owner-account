@@ -28,7 +28,7 @@ interface role {
 })
 export class EmployeeAddComponent implements OnInit {
   public showPassword: boolean | undefined;
-  [x: string]: any;
+  [x:string ]: any;
 
   public employeeForm!: FormGroup;
 
@@ -44,10 +44,12 @@ export class EmployeeAddComponent implements OnInit {
     this.employeeForm = new FormGroup({
       f_name: new FormControl('', [
         Validators.required,
+        Validators.pattern('^[a-zA-Z]+$'),
         Validators.maxLength(60),
       ]),
       l_name: new FormControl('', [
         Validators.required,
+        Validators.pattern('^[a-zA-Z]+$'),
         Validators.maxLength(60),
       ]),
       email: new FormControl('', [

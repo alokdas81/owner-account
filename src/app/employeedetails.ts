@@ -15,6 +15,7 @@ export interface Employee {
   supervisor_name: string;
   role: number;
   status: number;
+  image:any;
 
   details?: Detail[];
 }
@@ -107,7 +108,7 @@ export interface Colleague {
 }
 
 export interface Supervisor extends Colleague {
-  supervisor_name:string
+  supervisor_name:string;
 }
 
 export interface Avg extends Colleague{

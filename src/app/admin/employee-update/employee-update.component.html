@@ -10,9 +10,9 @@
       (ngSubmit)="updateemployee(employeeForm.value)"
       fxLayout="column wrap"
       fxLayoutAlign="center center"
-      fxLayoutGap="10px"
+      fxLayoutGap="50px"
     >
-      <mat-card-content>
+      <mat-card-content fxLayoutGap="40px">
         <mat-form-field>
           <input
             matInput
@@ -103,29 +103,27 @@
           <mat-error *ngIf="hasError('phone', 'maxlength')"
             >You have more than 15 characters</mat-error
           >
-
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Employee Role</mat-label>
-          <mat-select formControlName="role" [(value)]="employeeForm.value.status" >
+          <mat-select
+            formControlName="role"
+            [(value)]="employeeForm.value.status"
+          >
             <mat-option *ngFor="let role of employee_role" [value]="role.value">
-              {{role.viewValue}}
+              {{ role.viewValue }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Supervisor Name</mat-label>
-          <mat-select
-            formControlName="sup_id"
-            [compareWith]="compareItems"
-          >
-             <mat-option value="">None</mat-option>
-            <mat-option *ngFor="let s of super" [value]="s.value">
+
+          <select matNativeControl formControlName="sup_id">
+            <option *ngFor="let s of super" [value]="s.value">
               {{ s.viewValue }}
-            </mat-option>
-          </mat-select>
+            </option>
+          </select>
         </mat-form-field>
       </mat-card-content>
 

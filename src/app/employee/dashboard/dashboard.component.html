@@ -1,19 +1,18 @@
-<div class="card">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
-    <div class="card-body text-center">
-      <img
-        width="150"
-        height="150"
-        class="rounded-circle omg-thumbnail border-danger"
-        src="../../../assets/background.jpg"
-        alt=""
-      />
+<div class="card1"></div>
+
+  <div class="card-body text-center">
+    <label class="hoverable" for="fileInput" style="text-align: center;">
+    <img *ngIf="interface" src="{{url}}"/>
+    <div class="hover-text">Choose file</div>
+   </label>
+    <input id="fileInput" type='file' (change)="onSelectFile($event)">
+
       <div class="card-title text-primary">
         <h1>
           <span class="px-2">{{ emp_fname }}</span>
           <span class="px-2">{{ emp_lname }}</span>
         </h1>
-      </div>
+       </div>
       <div class="card-text">
         <fa-icon [icon]="faEnvelope"></fa-icon>
         {{ emp_email }}
@@ -22,10 +21,9 @@
         <fa-icon [icon]="faPhone"></fa-icon>
         {{ emp_phone }}
       </div>
-    </div>
     <section fxLayout="row wrap" fxLayoutAlign="center center">
       <div class="element">
-        <mat-card-content
+            <mat-card-content
           fxLayout="row"
           fxLayoutGap="30px"
           fxLayoutAlign="space-between center"
@@ -52,7 +50,6 @@
             </div>
           </div>
         </mat-card-content>
-      </div>
+        </div>
     </section>
-  </mat-card>
-</div>
+  </div>

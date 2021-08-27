@@ -1,20 +1,18 @@
-<div class="card">
-  <div class="card-body text-center">
- <label class="hoverable" for="fileInput" style="text-align: center;">
-  <img src="{{url}}">
-  <div class="hover-text">Choose file</div>
-  <div class="background"></div>
-</label>
-    <input id="fileInput" type='file' (change)="onSelectFile($event)">
-    <br>
-    <button type="button" mat-raised-button color="primary" (click)="onSubmit()"> Upload</button>
-    <br>
-    <div class="card-title text-primary">
-      <h1>
-        <span class="px-2">{{ admin_fname }}</span>
-        <span class="px-2">{{ admin_lname }}</span>
-      </h1>
-    </div>
+<div class="card1"></div>
+
+<div class="card-body text-center">
+  <label class="hoverable" for="fileInput" style="text-align: center">
+  <img *ngIf="employee" src="{{url}}"/>
+    <div class="hover-text">Choose file</div>
+  </label>
+  <input id="fileInput" type="file" (change)="onSelectFile($event)" />
+
+  <div class="card-title" style="text-align: center">
+    <h1>
+      <span class="px-2">{{ admin_fname }}</span>
+      <span class="px-2">{{ admin_lname }}</span>
+    </h1>
+
     <div class="card-text">
       <fa-icon [icon]="faEnvelope"></fa-icon>
       {{ admin_email }}
@@ -23,7 +21,6 @@
       <fa-icon [icon]="faPhone"></fa-icon>
       {{ admin_phone }}
     </div>
-
   </div>
   <app-employee-list></app-employee-list>
 </div>

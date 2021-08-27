@@ -5,6 +5,7 @@ import { RepositoryService } from 'src/app/service/repo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-kpi',
@@ -18,7 +19,8 @@ export class AddKpiComponent implements OnInit {
   constructor(
     private location: Location,
     private repository: RepositoryService,
-    private activateRoute:ActivatedRoute
+    private activateRoute:ActivatedRoute,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -106,13 +108,13 @@ export class AddKpiComponent implements OnInit {
     let apiUrl = `add/${empId}`;
     this.repository.addKpi(apiUrl, employee).subscribe(
       (res) => {
-
-        console.log(res);
         this.location.back();
+        console.log(res);
+
       },
       (error) => {
-        //temporary as well
-        this.location.back();
+        this.toastr.error("Please check again!",error.message)
+        // this.location.back();
       }
     );
   };

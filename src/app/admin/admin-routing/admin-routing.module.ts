@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'emp_given_kpi_details/:emp_id',canActivate:[AuthGuard], component:EmpGivenKpiComponent},
   { path: 'avgKpi/:emp_id',canActivate:[AuthGuard], component:AverageKpiComponent},
   { path: 'delete/:emp_id',canActivate:[AuthGuard], component: EmployeeDeleteComponent },
+  // { path: 'delete/:emp_id',canActivate:[AuthGuard], component: EmployeeListComponent },
   { path: 'add',canActivate:[AuthGuard], component: EmployeeAddComponent },
   {
     path: 'update/:emp_id',

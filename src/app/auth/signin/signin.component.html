@@ -14,16 +14,16 @@
         ><br />
 
         <mat-form-field class="example-full-width">
-          <input
-            matInput
-            formControlName="password"
-            type="password"
-            placeholder="Password"
-          />
+          <input id="mysecretpassword" type="password" formControlName="password"   placeholder="Password" matInput showHideInput>
+           <i matSuffix
+    class="material-icons"
+    showHideTrigger="mysecretpassword"
+    [showHideStatus]="{ materialIcon: true, id: 'mysecretpassword' }"
+  ></i>
         </mat-form-field>
 
         <br />
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Select Role</mat-label>
           <mat-select formControlName="role">
             <mat-option *ngFor="let role of employee" [value]="role.value">

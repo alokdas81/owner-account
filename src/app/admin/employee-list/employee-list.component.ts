@@ -1,3 +1,4 @@
+import { EmployeeDeleteService } from '../../service/employee-delete.service';
 import { Admin } from './../admin.module';
 import { RepositoryService } from './../../service/repo.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -6,6 +7,8 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
+import { Location } from '@angular/common';
+import { Employee } from 'src/app/employeedetails';
 
 @Component({
   selector: 'app-employee-list',
@@ -29,14 +32,19 @@ export class EmployeeListComponent implements OnInit {
     'delete',
   ];
   public dataSource = new MatTableDataSource<Admin>();
-
+  public employee!: Employee;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   _admin_name = JSON.parse(localStorage.getItem('data') as string);
   admin_name = this._admin_name.f_name;
 
-  constructor(private repoService: RepositoryService, private router: Router) {}
+  constructor(
+    private repoService: RepositoryService,
+    private router: Router,
+    private location: Location,
+    private employeeDelete: EmployeeDeleteService
+  ) {}
   // @ViewChild("box") box:ElementRef | undefined
 
   ngOnInit() {
@@ -72,9 +80,26 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate([updateUrl]);
   };
 
-  public redirectToDelete = (emp_id: string) => {
-    const deleteUrl: string = `admin/delete/${emp_id}`;
-    this.router.navigate([deleteUrl]);
+  public delete = (emp_id: string) => {
+    //console.log(element);
+    this.employeeDelete
+      .confirm('Please confirm..', 'Do you really want to Delete ?')
+      .then((confirmed) => {
+        console.log(`[confirmed]`, confirmed);
+        if (!confirmed) {
+          return;
+        }
+        const deleteUrl: string = `delete/${emp_id}`;
+        this.repoService.delete(deleteUrl).subscribe(
+          (res) => {
+            console.log(res);
+             this.getAllEmployees();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      });
   };
 
   public redirectToKpiDetails = (emp_id: string) => {
@@ -85,23 +110,22 @@ export class EmployeeListComponent implements OnInit {
   public redirectToDownload() {
     this.repoService.getDownload('download-data/').subscribe((res) => {
       let downloadLink = document.createElement('a');
-      let blob=res.body as Blob;
-    downloadLink.style.display = 'hidden';
+      let blob = res.body as Blob;
+      downloadLink.style.display = 'hidden';
 
-    console.log('blob',blob)
-    let blobData = window.URL.createObjectURL(
-      new Blob([blob], { type: blob.type
-      })
-    );
-    downloadLink.href = blobData;
-    downloadLink.setAttribute('download', 'Kpi.xlsx');
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
+      console.log('blob', blob);
+      let blobData = window.URL.createObjectURL(
+        new Blob([blob], { type: blob.type })
+      );
+      downloadLink.href = blobData;
+      downloadLink.setAttribute('download', 'Kpi.xlsx');
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
 
-    setTimeout(() => {
-      window.URL.revokeObjectURL(blobData);
-      downloadLink.remove();
-    }, 350);
+      setTimeout(() => {
+        window.URL.revokeObjectURL(blobData);
+        downloadLink.remove();
+      }, 350);
 
       console.warn(res);
     });

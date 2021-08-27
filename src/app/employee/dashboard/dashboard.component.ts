@@ -1,10 +1,10 @@
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from 'src/app/service/repo.service';
-import {employee_under, Self} from './../../employeedetails';
+import {Employee, employee_under, Self} from './../../employeedetails';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons"
+import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons";
 import { MatPaginator } from '@angular/material/paginator';
 import { Addkpi } from './../../employeedetails';
 @Component({
@@ -14,7 +14,13 @@ import { Addkpi } from './../../employeedetails';
 })
 export class DashboardComponent implements OnInit {
   employee!:any
+
+ interface!:Employee
+
+ url:any
+
   Addkpi!: Addkpi;
+  images:any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   faEnvelope=faEnvelope;
@@ -42,6 +48,7 @@ export class DashboardComponent implements OnInit {
   emp_phone=this._name.phone;
   emp_sup=this._name.sup_id;
   emp_role=this._name.role;
+  emp_image=this._name.image;
 
 
   constructor(
@@ -52,6 +59,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getownDetailsById()
+    this.owndetailsById();
+
   }
 
 
@@ -62,8 +71,24 @@ export class DashboardComponent implements OnInit {
     this.repoService.employeeGetOwnKpi(employeeByIdUrl).subscribe(
       (res:any) => {
         this.employee = res;
+      },
+      (error) => {
+        //this.errorHandler.handleError(error);
+        //this.errorMessage = this.errorHandler.errorMessage;
+      }
+    );
+  };
 
 
+
+  private owndetailsById = () => {
+    const employeeId: string = this.emp_empId;
+    const employeeByIdUrl: string = `own-details/${employeeId}`;
+    this.repoService.getData(employeeByIdUrl).subscribe(
+      (res) => {
+        this.interface = res as Employee;
+        this.url=`http://localhost:3000/${this.interface?.image}`;
+        //console.log(this.employee);
       },
       (error) => {
         //this.errorHandler.handleError(error);
@@ -75,7 +100,7 @@ export class DashboardComponent implements OnInit {
 
 
  isSubmited(){
-  if(this.employee[0].feedback_emp_id){
+  if(this.employee?.[0].feedback_emp_id){
     return true;
   }
   return false;
@@ -92,5 +117,24 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([kpiurl]);
   }
 
+
+
+ // url=`http://localhost:3000/${this.emp_image}`;
+
+
+  onSelectFile(event: any){
+    if(event.target.files.length>0){
+      const file=event.target.files[0]
+      this.images=file;
+      const formData= new FormData();
+      formData.append('file',this.images);
+      let apiUrl = `upload-image/${this.emp_empId}`
+      this.repoService.upload(apiUrl,formData).subscribe((res) => {
+        this.owndetailsById()
+        //console.log(res);
+     })
+    }
+
+}
 
 }

@@ -13,8 +13,13 @@ img {
   height: 200px;
   width: 200px;
   left: 41%;
-  border: 5px solid #000;
+
   border-radius: 50%;
+}
+.hover-text{
+  color:red;
+  display: block;
+
 }
 .hoverable .hover-text{
   position: absolute;
@@ -42,3 +47,25 @@ img {
 #fileInput{
   display: none;
 }
+
+.card1 {
+   /* margin-top: 100px; */
+   background-image: url('../../../assets/ogma-conceptions-banner.jpg');
+
+}
+.card1{
+  height: 200px;
+}
+.hoverable{
+  margin-top: -90px;
+}
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+
