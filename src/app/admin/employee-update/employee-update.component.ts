@@ -95,6 +95,12 @@ export class EmployeeUpdateComponent implements OnInit {
     console.log(this.super);
   }
 
+  isdisable(){
+    if(this.employeeForm.value.role===1){
+     return true
+    }
+    return false
+  }
   private getEmployeeById = () => {
     let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
     let employeeByIdUrl: string = `details/${employeeId}`;

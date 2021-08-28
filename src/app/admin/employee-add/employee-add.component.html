@@ -93,7 +93,7 @@
         <mat-form-field>
           <input
             matInput
-            type="text"
+            type="number"
             placeholder="Employee's phone no"
             formControlName="phone"
             id="phone"
@@ -107,7 +107,7 @@
           >
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field>
           <mat-label>Employee Role</mat-label>
           <mat-select formControlName="role">
             <mat-option *ngFor="let role of employee" [value]="role.value">
@@ -116,13 +116,14 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field >
           <mat-label>Supervisor Name</mat-label>
-          <mat-select formControlName="sup_name">
+          <mat-select formControlName="sup_name" [disabled]="isdisable()" >
             <mat-option value="N/A">None</mat-option>
             <mat-option
               *ngFor="let supervisor of super"
               [value]="supervisor.value"
+
             >
               {{ supervisor.viewValue }}
             </mat-option>

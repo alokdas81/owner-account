@@ -91,7 +91,7 @@
         <mat-form-field>
           <input
             matInput
-            type="text"
+            type="number"
             placeholder="Employee's phone no"
             formControlName="phone"
             id="phone"
@@ -118,9 +118,8 @@
 
         <mat-form-field>
           <mat-label>Supervisor Name</mat-label>
-
-          <select matNativeControl formControlName="sup_id">
-            <option *ngFor="let s of super" [value]="s.value">
+          <select  matNativeControl  formControlName="sup_id" >
+            <option *ngFor="let s of super" [disabled]="isdisable()" [value]="s.value"  >
               {{ s.viewValue }}
             </option>
           </select>

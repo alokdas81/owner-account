@@ -115,6 +115,13 @@ export class EmployeeAddComponent implements OnInit {
     }
   };
 
+  isdisable(){
+    if(this.employeeForm.value.role===1){
+     return true
+    }
+    return false
+  }
+
   // Logic for employee add method value get
   private executeEmployeeAdd = (employeeFormValue: {
     f_name: string;
