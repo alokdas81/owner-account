@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../../service/repo.service';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +11,7 @@ import {
   faDatabase,
 } from '@fortawesome/free-solid-svg-icons';
 import { Employee } from 'src/app/employeedetails';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -70,7 +72,7 @@ export class AdminDashboardComponent implements OnInit {
     this.repoService.getData(employeeByIdUrl).subscribe(
       (res) => {
         this.employee = res as Employee;
-       this.url =`http://localhost:3000/${this.employee?.image}`
+       this.url =`${environment.baseImageUrl}/${this.employee?.image}`
         //console.log(this.employee);
       },
       (error) => {

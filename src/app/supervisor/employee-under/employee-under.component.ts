@@ -42,6 +42,8 @@ flag=true;
   emp_phone=this._name.phone;
   emp_sup_id=this._name.sup_id
 
+  showGrid = true;
+
   constructor(
     private repoService: RepositoryService,
     private router: Router,
@@ -55,7 +57,10 @@ flag=true;
 
   public getAllEmployees = () => {
     this.repoService.getEmployeeUnder('employees/').subscribe((res) => {
+      this.showGrid = res.length > 0
+
       this.employee_under.data = res  as employee_under[];
+
       localStorage.setItem('element', JSON.stringify(res));
 
     });

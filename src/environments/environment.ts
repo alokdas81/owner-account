@@ -4,10 +4,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 const baseUrl = 'http://localhost:3000/api';
-
+const base=`http://localhost:3000`;
 export const environment = {
   production: false,
   urlAddress: baseUrl,
+   baseImageUrl:base,
   endPoints: {
     // auth: { signIn: `${baseUrl}/signIn` },
     auth:{master:`${baseUrl}/masterlogin`},

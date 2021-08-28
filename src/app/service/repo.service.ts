@@ -1,3 +1,5 @@
+import { employee_under } from './../employeedetails';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -14,9 +16,9 @@ export class RepositoryService {
     );
   };
 
-  public getEmployeeUnder = (route: string) => {
+  public getEmployeeUnder = (route: string): Observable<employee_under[]> => {
     const user = JSON.parse(localStorage.getItem('data') as string);
-    return this.http.post(
+    return this.http.post<employee_under[]>(
       this.createCompleteRoute(route, environment.urlAddress),
       { email: user.email }
     );
@@ -33,7 +35,6 @@ export class RepositoryService {
       this.createCompleteRoute(route, environment.urlAddress)
     );
   };
-
 
   public getDownload = (route: string) => {
     return this.http.get(

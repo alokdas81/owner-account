@@ -1,10 +1,11 @@
 
+
+<ng-container *ngIf="showGrid" >
 <div fxLayout fxLayoutAlign="center center" style="text-align: center">
   <mat-form-field fxFlex="40%">
     <input matInput #box (change)="applyFilter($event)" placeholder="Filter" />
   </mat-form-field>
 </div>
-
 <table mat-table [dataSource]="employee_under">
   <ng-container matColumnDef="emp_id">
     <th mat-header-cell *matHeaderCellDef>Employee id</th>
@@ -58,8 +59,11 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
 
+</table>
 <mat-paginator [pageSize]="20" [pageSizeOptions]="[2, 4, 6, 10, 20,50,100]">
 </mat-paginator>
+</ng-container>
+
+
 
