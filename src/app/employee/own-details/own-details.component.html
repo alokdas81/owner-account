@@ -31,7 +31,7 @@
 
           <div fxLayout="row wrap" fxFlex>
             <div fxFlex><strong>Employee's Role:</strong></div>
-            <div fxFlex>{{employee?.role}}</div>
+            <div fxFlex>{{employee?.role===1?"Admin":(employee?.role===2?"Employee":"Supervisor")}}</div>
           </div>
 
         <mat-card-actions fxLayoutAlign="center center">

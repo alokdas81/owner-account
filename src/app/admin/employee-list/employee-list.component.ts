@@ -24,6 +24,7 @@ export class EmployeeListComponent implements OnInit {
     'email',
     'phone',
     'sup_id',
+    'role',
     'average',
     'details',
     'Superkpidetails',

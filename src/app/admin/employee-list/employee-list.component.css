@@ -16,3 +16,18 @@ th.mat-header-cell {
 .download{
   margin-left: 15px;
 }
+
+.mat-column-emp_id{
+  width:7%;
+}
+.th-center{
+  text-align: center;
+}
+
+.mat-column-Superkpidetails{
+  width:7%;
+}
+
+.mat-column-Employeekpidetails{
+  width:6%;
+}
