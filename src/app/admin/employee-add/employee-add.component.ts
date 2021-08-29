@@ -117,11 +117,14 @@ export class EmployeeAddComponent implements OnInit {
 
   isdisable(){
     if(this.employeeForm.value.role===1){
+      this.clearSupervisor()
      return true
     }
     return false
   }
-
+  clearSupervisor(){
+    (this.employeeForm.get('sup_name')as FormControl).reset()
+  }
   // Logic for employee add method value get
   private executeEmployeeAdd = (employeeFormValue: {
     f_name: string;
