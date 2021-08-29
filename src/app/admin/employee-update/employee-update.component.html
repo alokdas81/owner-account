@@ -118,8 +118,8 @@
 
         <mat-form-field>
           <mat-label>Supervisor Name</mat-label>
-          <select  matNativeControl  formControlName="sup_id" >
-            <option *ngFor="let s of super" [disabled]="isdisable()" [value]="s.value"  >
+          <select  matNativeControl  formControlName="sup_id"  [disabled]="isdisable()" >
+            <option *ngFor="let s of super" [value]="s.value"  >
               {{ s.viewValue }}
             </option>
           </select>

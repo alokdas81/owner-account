@@ -97,9 +97,15 @@ export class EmployeeUpdateComponent implements OnInit {
 
   isdisable(){
     if(this.employeeForm.value.role===1){
+       this.clearSupervisor()
      return true
     }
+    (this.employeeForm.get('sup_id')as FormControl).enable();
     return false
+  }
+  clearSupervisor(){
+    (this.employeeForm.get('sup_id')as FormControl).reset();
+    (this.employeeForm.get('sup_id')as FormControl).disable();
   }
   private getEmployeeById = () => {
     let employeeId: string = this.activeRoute.snapshot.params['emp_id'];
