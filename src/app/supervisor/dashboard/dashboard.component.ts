@@ -4,6 +4,7 @@ import { RepositoryService } from './../../service/repo.service';
 import { Component, OnInit } from '@angular/core';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons";
 import { Employee } from 'src/app/employeedetails';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -69,7 +70,7 @@ export class DashboardComponent implements OnInit {
     this.repoService.getData(employeeByIdUrl).subscribe(
       (res) => {
         this.employee = res as Employee;
-       this.url=`http://localhost:3000/${this.employee?.image}`;
+        this.url =`${environment.baseImageUrl}/${this.employee?.image}`
 
         //console.log(this.employee);
       },

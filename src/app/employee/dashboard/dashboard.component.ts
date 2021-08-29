@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {faEnvelope,faMapMarkedAlt,faPhone,faDatabase} from "@fortawesome/free-solid-svg-icons";
 import { MatPaginator } from '@angular/material/paginator';
 import { Addkpi } from './../../employeedetails';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -87,7 +88,7 @@ export class DashboardComponent implements OnInit {
     this.repoService.getData(employeeByIdUrl).subscribe(
       (res) => {
         this.interface = res as Employee;
-        this.url=`http://localhost:3000/${this.interface?.image}`;
+        this.url =`${environment.baseImageUrl}/${this.employee?.image}`
         //console.log(this.employee);
       },
       (error) => {
