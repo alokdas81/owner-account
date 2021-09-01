@@ -39,10 +39,10 @@ export class SigninComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
-      role: new FormControl('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
+      // role: new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(1),
+      // ]),
     });
   }
 
@@ -59,27 +59,27 @@ export class SigninComponent implements OnInit {
     if (this.Form.valid) {
       const email = this.Form.value.email;
       const password = this.Form.value.password;
-      const role = this.Form.value.role;
+      // const role = this.Form.value.role;
       if (this.loginMode) {
-        this._authservice.master(email, password, role).subscribe(
+        this._authservice.master(email, password).subscribe(
           (res) => {
             localStorage.clear();
             //console.log(res);
             if(res.data){
-              if (res.data.role == role) {
-                if (role == 1) {
+              if (res.data.role == 1) {
+                // if (role == 1) {
                   localStorage.setItem('data', JSON.stringify(res.data));
                   this.toastr.success('You have successfully login!', `Welcome ${res.data.f_name} To Admin Dashboard`);
                   localStorage.setItem('token', res.token);
                   this.routes.navigate(['admin/dashboard']);
-                } else if (role == 0) {
+                } else if (res.data.role == 0) {
                   localStorage.setItem('data', JSON.stringify(res.data));
                   this.toastr.success('You have successfully login!', `Welcome ${res.data.f_name} To Supervisor Dashboard`);
                   localStorage.setItem('token', res.token);
                   this.routes.navigate([
                     `/supervisor/dashboard/${res.data.emp_id}`,
                   ]);
-                } else if (role == 2) {
+                } else if (res.data.role == 2) {
                   localStorage.setItem('data', JSON.stringify(res.data));
                   this.toastr.success('You have successfully login!', `Welcome ${res.data.f_name} To Employee Dashboard`);
                   //console.log(res);
@@ -90,7 +90,7 @@ export class SigninComponent implements OnInit {
                 } else {
                   this.toastr.error('Please cheack email and password!', 'Opps!');
                 }
-              }
+              
             }
             else{
               this.toastr.error('Please cheack email and password!', 'Opps!');

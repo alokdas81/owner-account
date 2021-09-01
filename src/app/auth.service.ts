@@ -30,12 +30,12 @@ export class AuthService {
   public master = (
     email: string,
     password: string,
-    role: number
+    // role: number
   ): Observable<any> => {
     return this.httpclient.post<LogInResponce>(environment.endPoints.auth.master, {
       email: email,
       password: password,
-      role: role,
+      // role: role,
     });
   };
 
