@@ -21,31 +21,44 @@
         <fa-icon [icon]="faPhone"></fa-icon>
         {{ emp_phone }}
       </div>
+      <br>
     <section fxLayout="row wrap" fxLayoutAlign="center center">
       <div class="element">
             <mat-card-content
           fxLayout="row"
-          fxLayoutGap="30px"
-          fxLayoutAlign="space-between center"
+          fxLayoutGap="50px"
+          fxLayoutAlign="space-between"
         >
           <div class="example-button-row">
             <div class="example-flex-container">
               <button
-                mat-mini-fab
+              mat-raised-button 
                 color="primary"
                  [disabled]="isSubmited()"
                 (click)="redirectToAddKpi(emp_empId)"
                 aria-label="Example icon button with a home icon"
               >
                 <mat-icon>assignment_ind</mat-icon>
+                <span class="button-text">Add Kpi</span>
               </button>
               <button
-                mat-mini-fab
+              mat-raised-button 
                 color="accent"
                 (click)="redirectToDetails(emp_empId)"
                 aria-label="Example icon button with a menu icon"
               >
                 <mat-icon>menu</mat-icon>
+                <span class="button-text">Own Details</span>
+              </button>
+              
+              <button
+              mat-raised-button 
+              color="primary"
+                (click)="redirectToKpiDetails(emp_empId)"
+                aria-label="Example icon button with a menu icon"
+              >
+              <mat-icon>list</mat-icon>
+              <span class="button-text">Kpi Details</span>
               </button>
             </div>
           </div>

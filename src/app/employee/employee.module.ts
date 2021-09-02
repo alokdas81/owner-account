@@ -18,7 +18,8 @@ import { OwnDetailsComponent } from './own-details/own-details.component';
 const routes: Routes = [
   { path: 'dashboard/:id',canActivate:[AuthGuard], component: DashboardComponent },
   {path:'add/:id',canActivate:[AuthGuard],component:EmployeeKpiComponent},
-  {path:'ownDetails/:emp_id',canActivate:[AuthGuard],component:OwnDetailsComponent}
+  {path:'ownDetails/:emp_id',canActivate:[AuthGuard],component:OwnDetailsComponent},
+  {path:'kpiDetails/:emp_id',canActivate:[AuthGuard],component:KpiDetailsComponent}
 ];
 
 @NgModule({

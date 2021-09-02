@@ -5,6 +5,7 @@ export interface Detail {
   roll: number;
 }
 export interface Employee {
+  employee_id:string;
   emp_id: string;
   f_name: string;
   l_name: string;
@@ -16,12 +17,16 @@ export interface Employee {
   role: number;
   status: number;
   image:any;
+  feedback_emp_id:string;
 
   details?: Detail[];
 }
 
 
+
+
 export interface EmployeeForAdd {
+  employee_id:string;
   f_name: string;
   l_name: string;
   phone: number;

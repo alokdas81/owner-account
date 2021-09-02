@@ -85,5 +85,10 @@ img {
 }
 
 
+  button {
+    padding-left: 50px;
+    padding-right: 74px; /* Add 24px to align the text in the center since the icon's width is 24px */
+}
+
 
 

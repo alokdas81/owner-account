@@ -36,6 +36,7 @@ export class EmployeeUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeForm = new FormGroup({
+      employee_id:new FormControl(''),
       f_name: new FormControl('', [
         Validators.required,
         Validators.pattern('^[a-zA-Z]+$'),
@@ -150,6 +151,7 @@ export class EmployeeUpdateComponent implements OnInit {
   };
   // put value into form
   private executeEmployeeUpdate = (employeeFormValue: {
+    employee_id:string;
     f_name: string;
     l_name: string;
     email: string;
@@ -158,6 +160,7 @@ export class EmployeeUpdateComponent implements OnInit {
     role: number;
     sup_id: number;
   }) => {
+    (this.employee.employee_id=employeeFormValue.employee_id),
     (this.employee.f_name = employeeFormValue.f_name),
       (this.employee.l_name = employeeFormValue.l_name),
       (this.employee.email = employeeFormValue.email),

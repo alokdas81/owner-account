@@ -23,11 +23,12 @@ flag=true;
   faPhone=faPhone;
   faDatabase=faDatabase;
   public displayedColumns = [
-    'emp_id',
+    'employee_id',
     'f_name',
     'l_name',
     'email',
     'phone',
+    'role',
     'Kpi_Add',
     'kpi_details',
   ];

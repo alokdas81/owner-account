@@ -22,9 +22,9 @@ export class DashboardComponent implements OnInit {
   faPhone=faPhone;
   faDatabase=faDatabase;
 
+  interface!:any;
 
-
-  employee!: Employee;
+  employee!:Employee;
 
   url:any;
 
@@ -40,11 +40,44 @@ export class DashboardComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getownDetailsById();
     this.getEmployeeById();
   }
 
 
+  // isSubmited(){
+  //   if(this.employee?.[0].feedback_emp_id){
+  //     return true;
+  //   }
+  //   return false;
+  //  }
+  
+    public redirectToDetails = (emp_emp_id: string) => {
+      let url: string = `/supervisor/ownKpiDetails/${emp_emp_id}`;
+      this.Routerer.navigate([url]);
+  
+    }
+  
+    public redirectToAddKpi=(emp_emp_id:string)=>{
+      let kpiurl: string = `/supervisor/add/${emp_emp_id}`;
+      this.Routerer.navigate([kpiurl]);
+    }
+  
 
+    public redirectToOwnDetails = (emp_emp_id: string) => {
+      let url: string = `/supervisor/ownDetails/${emp_emp_id}`;
+      this.Routerer.navigate([url]);
+  
+    }
+  
+
+    isSubmited(){
+      if(this.interface?.[0].feedback_emp_id){
+        return true;
+      }
+      return false;
+     }
+    
 
 
   onSelectFile(event: any){
@@ -62,6 +95,22 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  
+  private getownDetailsById = () => {
+    const employeeId: string = this.activeRoute.snapshot.params['id'];
+    console.log(this.activeRoute.snapshot);
+    const employeeByIdUrl: string = `employeeOwn/${employeeId}`;
+    this.repoService.employeeGetOwnKpi(employeeByIdUrl).subscribe(
+      (res:any) => {
+        this.interface = res;
+      },
+      (error) => {
+        //this.errorHandler.handleError(error);
+        //this.errorMessage = this.errorHandler.errorMessage;
+      }
+    );
+  };
+
 
 
   private getEmployeeById = () => {
@@ -69,7 +118,7 @@ export class DashboardComponent implements OnInit {
     const employeeByIdUrl: string = `own-details/${employeeId}`;
     this.repoService.getData(employeeByIdUrl).subscribe(
       (res) => {
-        this.employee = res as Employee;
+        this.employee= res as Employee;
         this.url =`${environment.baseImageUrl}/${this.employee?.image}`
 
         //console.log(this.employee);

@@ -66,6 +66,14 @@ export class RepositoryService {
     );
   };
 
+  public emailCheck = (route: string, body: any) => {
+    return this.http.post(
+      this.createCompleteRoute(route, environment.urlAddress),
+      body,
+
+    );
+  };
+
   public upload = (route: string, body: any) => {
     return this.http.post(
       this.createCompleteRoute(route, environment.urlAddress),

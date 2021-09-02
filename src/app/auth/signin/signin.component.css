@@ -25,3 +25,6 @@ main-wrapper{
 .body{
   overflow: hidden;
 }
+.password{
+  width: 31%;
+}

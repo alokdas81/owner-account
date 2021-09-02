@@ -11,6 +11,7 @@ import {
 import { Location } from '@angular/common';
 import { EmployeeForAdd } from 'src/app/employeedetails';
 
+
 interface supers {
   value: string;
   viewValue: string;
@@ -28,7 +29,7 @@ interface role {
 })
 export class EmployeeAddComponent implements OnInit {
   public showPassword: boolean | undefined;
-  [x:string ]: any;
+  count:any;
 
   public employeeForm!: FormGroup;
 
@@ -42,6 +43,7 @@ export class EmployeeAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeForm = new FormGroup({
+      employee_id:new FormControl('',Validators.required),
       f_name: new FormControl('', [
         Validators.required,
         Validators.pattern('^[a-zA-Z]+$'),
@@ -127,6 +129,7 @@ export class EmployeeAddComponent implements OnInit {
   }
   // Logic for employee add method value get
   private executeEmployeeAdd = (employeeFormValue: {
+    employee_id:string;
     f_name: string;
     l_name: string;
     email: string;
@@ -136,6 +139,7 @@ export class EmployeeAddComponent implements OnInit {
     sup_name: string;
   }) => {
     let employee: EmployeeForAdd = {
+      employee_id:employeeFormValue.employee_id,
       f_name: employeeFormValue.f_name,
       l_name: employeeFormValue.l_name,
       email: employeeFormValue.email,
@@ -145,18 +149,31 @@ export class EmployeeAddComponent implements OnInit {
       sup_id: Number(employeeFormValue.sup_name),
     };
 
-    let apiUrl = 'create/';
-    this.repository.create(apiUrl, employee).subscribe(
+    let emailCheck= 'emailValidation/';
+    this.repository.emailCheck(emailCheck, {"email":employee.email}).subscribe(
       (res) => {
-        if (res) console.log(res);
-        this.location.back();
-      },
-      (error) => {
-        this.toastr.error('Wrong input!', 'Email is already exists!');
-        //this.location.back();
+        this.count = res;
+        if(this.count.cnt>0){
+          this.toastr.error('Wrong input!', 'Email is already exists!');
+        }
+        else{
+          let apiUrl = 'create/';
+          this.repository.create(apiUrl, employee).subscribe(
+            (res) => {
+              if (res) console.log(res);
+              this.location.back();
+            },
+            (error) => {
+              this.toastr.error('Wrong input!', 'Email is already exists!');
+              //this.location.back();
+            });
       }
-    );
-  };
+          
+        
+      })
+ 
+    }
+
 
   super: supers[] = [];
 

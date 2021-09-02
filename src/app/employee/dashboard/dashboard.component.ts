@@ -88,7 +88,7 @@ export class DashboardComponent implements OnInit {
     this.repoService.getData(employeeByIdUrl).subscribe(
       (res) => {
         this.interface = res as Employee;
-        this.url =`${environment.baseImageUrl}/${this.employee?.image}`
+        this.url =`${environment.baseImageUrl}/${this.interface?.image}`
         //console.log(this.employee);
       },
       (error) => {
@@ -109,6 +109,12 @@ export class DashboardComponent implements OnInit {
 
   public redirectToDetails = (emp_empId: string) => {
     let url: string = `/employee/ownDetails/${emp_empId}`;
+    this.router.navigate([url]);
+
+  }
+
+  public redirectToKpiDetails = (emp_empId: string) => {
+    let url: string = `/employee/kpiDetails/${emp_empId}`;
     this.router.navigate([url]);
 
   }

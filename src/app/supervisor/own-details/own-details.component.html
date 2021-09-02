@@ -1,0 +1,50 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title style="text-align: center;">Details</mat-card-title>
+        <br>
+        <br>
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="40px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> Employee Id:</strong></div>
+              <div fxFlex>{{employee?.employee_id}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> First name:</strong></div>
+              <div fxFlex>{{employee?.f_name}}</div>
+            </div>
+  
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> Last name:</strong></div>
+              <div fxFlex>{{employee?.l_name}}</div>
+            </div>
+  
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> Phone no:</strong></div>
+              <div fxFlex>{{employee?.phone}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> Email:</strong></div>
+              <div fxFlex>{{employee?.email}}</div>
+            </div>
+  
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong> Supervisor Name:</strong></div>
+              <div fxFlex>{{employee?.supervisor_name || 'N/A'}}</div>
+            </div>
+  
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>Employee's Role:</strong></div>
+              <div fxFlex>{{employee?.role===1?"Admin":(employee?.role===2?"Employee":"Supervisor")}}</div>
+            </div>
+  
+          <mat-card-actions fxLayoutAlign="center center">
+                <button type="button" mat-raised-button color="warn" (click)="onBack()">Go Back</button>
+          </mat-card-actions>
+  
+          </div>
+        </mat-card-content>
+  
+      </mat-card>
+  </section>
+  

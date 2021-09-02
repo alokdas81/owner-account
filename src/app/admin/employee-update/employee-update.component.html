@@ -17,6 +17,22 @@
           <input
             matInput
             type="text"
+            placeholder="Employee's Id"
+            formControlName="employee_id"
+            id="employee_id"
+          />
+          <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('f_name', 'required')"
+            >Employee Id is required</mat-error
+          >
+          <mat-error *ngIf="hasError('f_name', 'maxlength')"
+            >You have more than 60 characters</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
             placeholder="Employee's First name"
             formControlName="f_name"
             id="f_name"

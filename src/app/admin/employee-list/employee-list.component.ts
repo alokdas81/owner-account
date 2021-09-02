@@ -18,7 +18,7 @@ import { Employee } from 'src/app/employeedetails';
 export class EmployeeListComponent implements OnInit {
   public displayedColumns = [
     'status',
-    'emp_id',
+    'employee_id',
     'f_name',
     'l_name',
     'email',
